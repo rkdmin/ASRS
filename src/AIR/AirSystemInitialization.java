@@ -20,7 +20,7 @@ public class AirSystemInitialization {
 			" DROP TABLE IF EXISTS  air.Customer;",
 			" CREATE TABLE  Customer( " +
 					" id varchar(20) NOT NULL, " + 
-					" password varchar(20) NOT NULL, " +
+					" password varchar(200) NOT NULL, " +
 					" name varchar(20) NOT NULL, " +
 					" gender varchar(10) NOT NULL, " +
 					" number varchar(14) NOT NULL, " +
@@ -115,14 +115,5 @@ public class AirSystemInitialization {
 		
 	}
 	
-	static void insertRootBanker() {
-		
-		Manager manager = new Manager("A001","A001");
-		
-		AIRDB.insertManager(manager);
-		
-		ResultSet rs = AIRDB.getAllBankersRS();
-		
-		AIRDB.outputResultSet("\t\t** 초기화로 등록된 루트 관리자 **", rs);
-	}
+	
 }

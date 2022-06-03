@@ -9,7 +9,7 @@ public class Customer {
 	String gender;
 	String number;
 	int age;
-	String PassportNo; // 여권번호
+	String passportNo; // 여권번호
 	String address; //주소	
 	
 	public	Customer() {
@@ -24,7 +24,7 @@ public class Customer {
 		this.gender = gender;
 		this.number = number;
 		this.age = age;
-		PassportNo = passportNo;
+		this.passportNo = passportNo;
 		this.address = address;
 	}
 
@@ -77,11 +77,11 @@ public class Customer {
 	}
 
 	public String getPassportNo() {
-		return PassportNo;
+		return passportNo;
 	}
 
 	public void setPassportNo(String passportNo) {
-		PassportNo = passportNo;
+		this.passportNo = passportNo;
 	}
 
 	public String getAddress() {
@@ -103,7 +103,7 @@ public class Customer {
 			System.out.print("성별: " + gender+",   ");
 			System.out.print("전화번호: " + number +",");
 			System.out.print("나이: " + age +",   ");
-			System.out.print("여권번호: " + PassportNo+",   ");
+			System.out.print("여권번호: " + passportNo+",   ");
 			System.out.print("주소: " + address +"\n");
 		}	
 	

@@ -28,8 +28,8 @@
        	String secPassword = (sha256.encrypt(password));// 기존 비밀번호 암호화
        	customer.setPassword(secPassword);// 암호화된 비밀번호 삽입
        	customer.output();
-       	AIRDB.insertCustomer(customer);
-       	
+       	Customer c = customer;
+    	AIRDB.insertCustomer(c);
         //out.print("<script>location='joinSystem2.jsp'</script>");
     %>
     

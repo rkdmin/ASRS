@@ -1,12 +1,14 @@
 package AIR;
 
-
 import java.sql.*;
 
 public class AIRDB {
-	static  Connection con         = null;
-    //static Statement stmt         = null;
 	
+	static  Connection con         = null;
+    static Statement stmt         = null;
+    static PreparedStatement  prStmt = null;
+    static  ResultSet rs           = null ;
+    
 	static String driver;
 	public static String dbms;
 	static String URL;
@@ -47,10 +49,10 @@ public class AIRDB {
 			URL = URLRemoteMySQL;
 		}
 
-		loadConnectair();
+		loadConnectAir();
 	}
  // JDBC 드라이버 로드 및 연결, 연경 성공이면 true, 실패면 false 반환하는 메소드
- 	public static boolean loadConnectair()  {
+ 	public static boolean loadConnectAir()  {
  		return loadConnect("air");
  	}
  	
@@ -79,30 +81,37 @@ public class AIRDB {
  		return false;
  	}
  // 주어진 SQL 문을 실행하는 메소드
- 	public static void executeAnyQuery(String sql) {
- 		try {
- 			Statement stmt = con.createStatement();
+  	public static void executeAnyQuery(String sql) {
+  		try {
+  			Statement stmt = con.createStatement();
+  			stmt.execute(sql);
+  		}
+  		catch(SQLException ex ) {
+  			System.err.println("\n  ??? SQL exec error in executeAnyQuery(): " + ex.getMessage() );
+  			ex.printStackTrace();
+  		}	   
+  	}
+  	public static ResultSet selectQuery(String sql) { 
+   	   try {
+   		   // Statement 생성 
+   		   stmt = con.createStatement();
+   		   rs = stmt.executeQuery(sql);  
 
- 			stmt.execute(sql);
- 		}
- 		catch(SQLException ex ) {
- 			System.err.println("\n  ??? SQL exec error in executeAnyQuery(): " + ex.getMessage() );
- 			ex.printStackTrace();
- 		}	   
- 	}
+   	   } catch( SQLException ex ) 	    {
+   		   System.err.println("** SQL exec error in selectQuery() : " + ex.getMessage() );
+   	   }
+   			
+   	   return rs;
+   		
+      }
  	
  // Customer 객체를 은행원 테이블 customer의 투플로 삽입하는 메소드
- 	public static int insertCustomer(Customer customer) {
- 		int updateCnt = 0;
-
- 		try {                      
- 			// SQL 질의문을 수행한다.
- 			String sql = "insert into customer values (?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
- 			outputForDebug("In insertCustomer() : " + sql);
- 			
- 			PreparedStatement prStmt = con.prepareStatement(sql);
-
- 			prStmt.setString(1, customer.getId());
+ 	public static boolean insertCustomer(Customer customer) {
+		try {
+			String sql = "insert into customer values (?, ?, ?, ?, ?, ?, ?, ?);" ;
+			prStmt= con.prepareStatement(sql);  
+			
+			prStmt.setString(1, customer.getId());
  			prStmt.setString(2, customer.getPassword());
  			prStmt.setString(3, customer.getName());
  			prStmt.setString(4, customer.getGender());
@@ -110,15 +119,14 @@ public class AIRDB {
  			prStmt.setInt(6, customer.getAge());
  			prStmt.setString(7, customer.getPassportNo());
  			prStmt.setString(8, customer.getAddress());
- 			prStmt.setString(9, customer.getId());
-
- 			updateCnt = prStmt.executeUpdate();  		
- 		} catch( SQLException ex ) {
-
- 			System.err.println("\n  ??? SQL exec error in insertCustomer(): " + ex.getMessage() );
- 		}
-
- 		return updateCnt;
+			prStmt.executeUpdate();
+			return true;
+		}
+		catch(SQLException ex ) {
+			System.err.println("\n  ??? SQL exec error in executeAnyQuery(): " + ex.getMessage() );
+			ex.printStackTrace();
+			return false;
+		}	 
  	}
 
 }

@@ -19,17 +19,17 @@ public class AirSystemInitialization {
 
 			" DROP TABLE IF EXISTS  air.Customer;",
 			" CREATE TABLE  Customer( " +
-					" ID varchar(20) NOT NULL, " + 
+					" id varchar(20) NOT NULL, " + 
 					" password varchar(20) NOT NULL, " +
-					"  name varchar(20) NOT NULL, " +
-					"  gender varchar(10) NOT NULL, " +
-					" number int(11) NOT NULL, " +
+					" name varchar(20) NOT NULL, " +
+					" gender varchar(10) NOT NULL, " +
+					" number varchar(14) NOT NULL, " +
 					" age int(11) NOT NULL, " +
-					"  PassportNo varchar(20) NOT NULL, " +
-					"  address varchar(20) NOT NULL, " +
-					" PRIMARY KEY (ID) " +
+					" passportNo varchar(20) NOT NULL, " +
+					" address varchar(20) NOT NULL, " +
+					" PRIMARY KEY (id) " +
 			  " );",
-			  " insert into air.Customer values('a001', 'a001','김한신','남자',1012345678,20,'M123123','수원시'); ",
+			  " insert into air.Customer values('0', '1234','운영자','남자','1012345678',20,'M123123','수원시'); ",
 			  
 		  /****************************************
 				 TABLE NAME   : air.AirPlane

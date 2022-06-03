@@ -3,8 +3,6 @@ package AIR;
 
 import java.sql.*;
 
-import hsbank.Banker;
-
 public class AIRDB {
 	static  Connection con         = null;
     //static Statement stmt         = null;
@@ -99,19 +97,20 @@ public class AIRDB {
 
  		try {                      
  			// SQL 질의문을 수행한다.
- 			String sql = "insert into customer values (?, ?, ?, ?, ?, ?, ?, ?);" ;
+ 			String sql = "insert into customer values (?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
  			outputForDebug("In insertCustomer() : " + sql);
  			
  			PreparedStatement prStmt = con.prepareStatement(sql);
 
- 			prStmt.setString(1, customer.getID());
+ 			prStmt.setString(1, customer.getId());
  			prStmt.setString(2, customer.getPassword());
  			prStmt.setString(3, customer.getName());
  			prStmt.setString(4, customer.getGender());
- 			prStmt.setInt(5, customer.getNumber());
+ 			prStmt.setString(5, customer.getNumber());
  			prStmt.setInt(6, customer.getAge());
  			prStmt.setString(7, customer.getPassportNo());
  			prStmt.setString(8, customer.getAddress());
+ 			prStmt.setString(9, customer.getId());
 
  			updateCnt = prStmt.executeUpdate();  		
  		} catch( SQLException ex ) {
@@ -121,29 +120,7 @@ public class AIRDB {
 
  		return updateCnt;
  	}
- // Banker 객체를 은행원 테이블 banker의 투플로 삽입하는 메소드
- 	public static int insertManager(Manager manager) {
- 		int updateCnt = 0;
 
- 		try {                      
- 			// SQL 질의문을 수행한다.
- 			String sql = "insert into manager values (?, ?);" ;
- 			outputForDebug("In insertManager() : " + sql);
- 			
- 			PreparedStatement prStmt = con.prepareStatement(sql);
-
- 			prStmt.setString(1, manager.getMgrID());
- 			prStmt.setInt(2, manager.getPassword());
- 			
-
- 			updateCnt = prStmt.executeUpdate();  		
- 		} catch( SQLException ex ) {
-
- 			System.err.println("\n  ??? SQL exec error in insertManager(): " + ex.getMessage() );
- 		}
-
- 		return updateCnt;
- 	}
 }
     
     

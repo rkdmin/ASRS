@@ -3,9 +3,7 @@ package AIR;
 import java.util.*;
 
 public class Customer {
-
-	int id; // 고유번호
-	String userId;// 아이디
+	String id;// 아이디
 	String password; //비밀번호
 	String name;
 	String gender;
@@ -17,11 +15,10 @@ public class Customer {
 	public	Customer() {
 	}
 
-	public Customer(int id, String userId, String password, String name, String gender, String number, int age,
-			String passportNo, String address) {
+	public Customer(String id, String password, String name, String gender, String number, int age, String passportNo,
+			String address) {
 		super();
 		this.id = id;
-		this.userId = userId;
 		this.password = password;
 		this.name = name;
 		this.gender = gender;
@@ -31,20 +28,12 @@ public class Customer {
 		this.address = address;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getPassword() {
@@ -107,15 +96,15 @@ public class Customer {
 	
 	
 	// 고객정보 출력
-//		public void output() {
-//			System.out.print("  * 아이디: " + ID +",  ");
-//			System.out.print("비밀번호: " + password +",  ");
-//			System.out.print("이름: " + name+",  ");
-//			System.out.print("성별: " + gender+",   ");
-//			System.out.print("전화번호: " + number +",");
-//			System.out.print("나이: " + age +",   ");
-//			System.out.print("여권번호: " + PassportNo+",   ");
-//			System.out.print("주소: " + address +"\n");
-//		}	
+		public void output() {
+			System.out.print("  * 아이디: " + id +",  ");
+			System.out.print("비밀번호: " + password +",  ");
+			System.out.print("이름: " + name+",  ");
+			System.out.print("성별: " + gender+",   ");
+			System.out.print("전화번호: " + number +",");
+			System.out.print("나이: " + age +",   ");
+			System.out.print("여권번호: " + PassportNo+",   ");
+			System.out.print("주소: " + address +"\n");
+		}	
 	
 }

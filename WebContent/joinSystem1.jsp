@@ -4,19 +4,17 @@
   <HEAD><TITLE>회원가입 처리</TITLE></HEAD>
   <BODY>
 	<jsp:useBean class="AIR.Customer" id="customer" scope="request" />
-	<jsp:setProperty name="customer" property="id" />
-	<jsp:setProperty name="customer" property="password" />
+	<jsp:setProperty name="customer" property="*" />
     <%  
 	    request.setCharacterEncoding("utf-8");
-    	String userId = customer.getUserId();
-    	String password = customer.getPassword();
+    	String password = request.getParameter("password");
     	String password2 = request.getParameter("password2");
-    	
-    	// 비밀번호 포맷 확인(영문, 특수문자, 숫자 포함 8자 이상)
-    	if(!password.equals("password2")){
+    	// 재입력 비밀번호 다를시
+    	if(!password.equals(password2)){
     		out.print("<script>alert('다시 입력한 비밀번호가 다릅니다. ')</script>");
 			out.print("<script>location='join2.jsp'</script>");
     	}
+
     	// 비밀번호 포맷 확인(영문, 특수문자, 숫자 포함 8자 이상)
     	Pattern passPattern1 = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$");
     	Matcher passMatcher1 = passPattern1.matcher(password);
@@ -28,9 +26,11 @@
     	// 비밀번호 암호화
        	SHA256 sha256 = new SHA256();
        	String secPassword = (sha256.encrypt(password));// 기존 비밀번호 암호화
+       	customer.setPassword(secPassword);// 암호화된 비밀번호 삽입
+       	customer.output();
+       	AIRDB.insertCustomer(customer);
        	
-       	//AIRDB.insertCustomer1(String userId, String password); DB에 정보삽입
-       out.print("<script>location='join3.jsp'</script>");
+        //out.print("<script>location='joinSystem2.jsp'</script>");
     %>
     
   </BODY>

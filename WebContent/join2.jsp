@@ -9,8 +9,8 @@
 			request.setCharacterEncoding("utf-8");
 	%>
 	<jsp:include page="header.jsp" flush="false"/>
-	<h3>1약관동의 2정보입력 3정보입력2 3완료</h3>
-      <form action="joinSystem1.jsp" method="post">
+	<h3>1약관동의 2정보입력 3완료</h3>
+      <form action="joinSystem.jsp" method="post">
       	아이디: <input type=text name="id" required><br>
       	비밀번호: <input type=password name="password" required><br>
       	비밀번호확인: <input type=password name="password2" required><br>

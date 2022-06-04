@@ -98,7 +98,7 @@ public class AirSystemInitialization {
 						"insert Route values('H1004','인천-괌',15772600,671642321,'인천공항','10:20','앤토니오B.원팻 공항','19:40',20220504);" ,
 						"insert Route values('H1004','괌-인천',671642321,15772600,'앤토니오B.원팻 공항','11:00','인천공항','20:20',20220505);" ,
 						"insert Route values('H1005','인천-파리',15772600,3950,'인천공항','16:00','샤를드골공항','08:30',20220503);" ,
-						"insert Route values('H1005','파리-인천',3950,15772600,'샤를드골공항','08:00','인천공항','00:30',20220507);" ,};
+						"insert Route values('H1005','파리-인천',3950,15772600,'샤를드골공항','08:00','인천공항','00:30',20220507);" };
 
 	public static void main(String[] args) {
 		createInitialAirDatabase();

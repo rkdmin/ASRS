@@ -9,7 +9,7 @@
 			request.setCharacterEncoding("utf-8");
 	%>
 	<jsp:include page="header.jsp" flush="false"/>
-	<h3>1약관동의 2정보입력 3정보입력2 3완료</h3>
+	<h3>1약관동의 2정보입력 3완료</h3>
       <label><input type="checkbox" name="agree" value="1" id="one">개인정보 제공 동의</label><br>
       <label><input type="checkbox" name="agree" value="2" id="two">개인정보 사용 동의</label><br>
       <label><input type="checkbox" name="agree" value="3" id="three">제 3자 이용 동의</label><br>

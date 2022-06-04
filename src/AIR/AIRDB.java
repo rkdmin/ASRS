@@ -108,6 +108,7 @@ public class AIRDB {
  // Customer 객체를 은행원 테이블 customer의 투플로 삽입하는 메소드
  	public static boolean insertCustomer(Customer customer) {
 		try {
+			customer.output();
 			String sql = "insert into customer values (?, ?, ?, ?, ?, ?, ?, ?);" ;
 			prStmt= con.prepareStatement(sql);  
 			
@@ -128,6 +129,9 @@ public class AIRDB {
 			return false;
 		}	 
  	}
+ 	
+ 	// 아이디중복을 확인하는 메소드 중복이 없으면 true
+ 	// public static boolean idDuplication(String id);
 
 }
     

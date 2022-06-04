@@ -23,14 +23,27 @@
 			out.print("<script>location='join2.jsp'</script>");
     	}
     	
+    	// 아이디가 중복 일시
+    	//AIRDB.loadConnectAir();	
+    	//boolean result1 = idDuplication(String id);
+    	//if(result1 == false){
+    	//	out.print("<script>alert('이미 존재하는 아이디가 있습니다.')</script>");
+		//	out.print("<script>location='join2.jsp'</script>");
+    	//}
+    	
     	// 비밀번호 암호화
        	SHA256 sha256 = new SHA256();
        	String secPassword = (sha256.encrypt(password));// 기존 비밀번호 암호화
        	customer.setPassword(secPassword);// 암호화된 비밀번호 삽입
        	customer.output();
        	Customer c = customer;
-    	AIRDB.insertCustomer(c);
-        //out.print("<script>location='joinSystem2.jsp'</script>");
+       	
+       	AIRDB.loadConnectAir();	
+    	boolean result2 = AIRDB.insertCustomer(c);
+    	if(result2 == true){
+    		out.print("<script>alert('회원가입 완료!')</script>");
+    	}
+        out.print("<script>location='join3.jsp'</script>");
     %>
     
   </BODY>

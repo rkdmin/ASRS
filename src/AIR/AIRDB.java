@@ -128,22 +128,71 @@ public class AIRDB {
  	}
  	
  	// 회원가입 및 로그인 
- 	// 아이디중복을 확인하는 메소드 중복이 없으면 true
- 	public static boolean idDuplication(String id) {
- 		return true;
- 	}
- 	
- 	// 아이디 비번으로 로그인 소비자 객체 반환(일치하는 회원정보없으면 null값 반환)
- 	public static Customer loginProcess(String id,  String password) {
- 		return null;
- 	}
- 	
- 	// 노선 검색
- 	// 날짜에 맞는 노선검색(route테이블에서)
+    // 아이디중복을 확인하는 메소드 중복이 없으면 true
+public static boolean idDuplication(String id) {
+       
+       
+       String sql = "select id from Customer where id =? ";
+       
+       try { 
+          PreparedStatement pstmt = con.prepareStatement(sql);
+          pstmt.setString(1, id);
+          ResultSet rs = pstmt.executeQuery();
+          
+          while(rs.next()) {
+             if(rs.getString("id").equals(id)) {
+                return false;
+             }
+          }
+       }catch (SQLException e) {
+          e.printStackTrace();
+       }
+       return true;
+    }
+    
+    //아이디 비번으로 로그인 소비자 객체 반환(일치하는 회원정보없으면 null값 반환)
+    public static Customer loginProcess(String id,  String password) {
+       try {                      
+         // SQL 질의문을 수행한다.
+         String sql = "select * from Customer where id=? and password=?;" ;
+         outputForDebug("In getCustomer() SQL : " + sql);
+         PreparedStatement prStmt = con.prepareStatement(sql);
+         prStmt.setString(1, id);
+         prStmt.setString(2, password);
+
+         ResultSet rs = prStmt.executeQuery();  
+         if (rs.next())  { 
+            Customer customer = getCustomerFromRS(rs);
+            return customer;
+         }         
+      } catch( SQLException ex ) {             
+         System.err.println("\n  ??? SQL exec error in getCustomer(): " + ex.getMessage() );
+      }
+       return null;
+    }
+    public static Customer getCustomerFromRS(ResultSet rs) {  
+      Customer customer = null;
+
+      try {
+         if (rs.getRow() ==  0)
+            return null;
+         
+         String id = rs.getString("id");  // ID 애트리뷰트 값을 저장
+
+         customer.setId( rs.getString("id") );   // ResultSet의 애트리뷰트 값을 get하여 필드의 값으로 저장 
+         customer.setPassword( rs.getString("password") );
+      } catch( SQLException ex )        {
+         System.err.println("\n  ??? SQL exec error in getCustomerFromRS(): " + ex.getMessage() );
+      }
+
+      return customer;
+   }
+    // 날짜에 맞는 노선검색(route테이블에서)
  	public static ResultSet getRoute(String date) {
  		return rs;// 암거나 리턴한거고 알맞은 노선들 리턴해주면댐
  	}
-
 }
     
+
+	
     

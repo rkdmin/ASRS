@@ -29,7 +29,7 @@ public class AirSystemInitialization {
 					" address varchar(20) NOT NULL, " +
 					" PRIMARY KEY (id) " +
 			  " );",
-			  " insert into air.Customer values('0', '1234','운영자','남자','1012345678',20,'M123123','수원시'); ",
+			  " insert into air.Customer values('0', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4','운영자','남자','1012345678',20,'M123123','수원시'); ",
 			  
 		  /****************************************
 				 TABLE NAME   : air.AirPlane

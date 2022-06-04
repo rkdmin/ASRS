@@ -8,9 +8,9 @@
 <title>ASRS</title>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="false"/>
+	<jsp:include page="header.jsp" flush="false" />
 	<h3>빠른예약</h3>
-	<form action=route.jsp>
+	<form action=route.jsp method="post">
     <select name="start">
      <option value="인천">인천</option>
      <option value="오사카">오사카</option>
@@ -35,7 +35,7 @@
 		Date now = Calendar.getInstance().getTime();       
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat formatter2 = new SimpleDateFormat("dd");
-		String min = formatter.format(now);         
+		String min = formatter.format(now);    
 	%>
 	출발날짜 : <input type="date" value=<%=min %> min=<%=min%> name="sDate"><br><br>
 	도착날짜 : <input type="date" value=<%=min %> min=<%=min%> name="aDate"><br><br>

@@ -20,7 +20,8 @@
        SHA256 sha256 = new SHA256();
      	String secPassword = (sha256.encrypt(password));// 기존 비밀번호 암호화
      	
-  	  Customer customer = AIRDB.loginProcess(id, secPassword);// 회원정보찾기
+     	AIRDB.loadConnectAir();	
+  	    Customer customer = AIRDB.loginProcess(id, secPassword);// 회원정보찾기
   		
       if (customer == null) {
      		out.print("<script>alert('잘못된 아이디 또는 패스워드 입니다.')</script>");     

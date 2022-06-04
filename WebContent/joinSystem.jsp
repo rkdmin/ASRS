@@ -11,6 +11,7 @@
 	<jsp:useBean class="AIR.Customer" id="customer" scope="request" />
 	<jsp:setProperty name="customer" property="*" />
     <% 
+        String id = customer.getId();
     	String password = request.getParameter("password");
     	String password2 = request.getParameter("password2");
     	// 재입력 비밀번호 다를시
@@ -27,13 +28,13 @@
 			out.print("<script>location='join2.jsp'</script>");
     	}
     	
-    	// 아이디가 중복 일시
-    	//AIRDB.loadConnectAir();	
-    	//boolean result1 = idDuplication(String id);
-    	//if(result1 == false){
-    	//	out.print("<script>alert('이미 존재하는 아이디가 있습니다.')</script>");
-		//	out.print("<script>location='join2.jsp'</script>");
-    	//}
+    	//아이디가 중복 일시
+    	AIRDB.loadConnectAir();	
+    	boolean result1 = AIRDB.idDuplication(id);
+    	if(result1 == false){
+    	out.print("<script>alert('이미 존재하는 아이디가 있습니다.')</script>");
+		out.print("<script>location='join2.jsp'</script>");
+    	}
     	
     	// 비밀번호 암호화
        	SHA256 sha256 = new SHA256();

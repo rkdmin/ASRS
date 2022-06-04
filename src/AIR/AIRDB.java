@@ -18,8 +18,6 @@ public class AIRDB {
 	static String URLLocalMySQL = "jdbc:mysql://localhost:3306/" ;
 	static String URLRemoteMySQL = "jdbc:mysql://203.252.21.54:3306/";
     
-
-    
     static {
 		driver = driverMySQL;
 		dbms = "MySQL";
@@ -135,7 +133,7 @@ public class AIRDB {
  		return true;
  	}
  	
- 	// 아이디 비번으로 로그인 소비자 객체 반환
+ 	// 아이디 비번으로 로그인 소비자 객체 반환(일치하는 회원정보없으면 null값 반환)
  	public static Customer loginProcess(String id,  String password) {
  		return null;
  	}

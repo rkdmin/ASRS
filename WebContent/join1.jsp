@@ -1,19 +1,17 @@
-<%@ page contentType="text/html;charset=utf-8"
-	import="java.sql.*, AIR.*"%>
+<%@ page language="java" contentType="text/html; charset=euc_kr" import="java.sql.*, AIR.*"%>
+<% request.setCharacterEncoding("euc-kr"); %>>
 <html>
 <head>
+<meta charset="EUC-KR">
 <title>ASRS</title>
 </head>
 <body>
-	<%
-			request.setCharacterEncoding("utf-8");
-	%>
 	<jsp:include page="header.jsp" flush="false"/>
-	<h3>1ì•½ê´€ë™ì˜ 2ì •ë³´ì…ë ¥ 3ì™„ë£Œ</h3>
-      <label><input type="checkbox" name="agree" value="1" id="one">ê°œì¸ì •ë³´ ì œê³µ ë™ì˜</label><br>
-      <label><input type="checkbox" name="agree" value="2" id="two">ê°œì¸ì •ë³´ ì‚¬ìš© ë™ì˜</label><br>
-      <label><input type="checkbox" name="agree" value="3" id="three">ì œ 3ì ì´ìš© ë™ì˜</label><br>
-      <input type="button" value="í™•ì¸" onclick="test()">
+	<h3>1¾à°üµ¿ÀÇ 2Á¤º¸ÀÔ·Â 3¿Ï·á</h3>
+      <label><input type="checkbox" name="agree" value="1" id="one">°³ÀÎÁ¤º¸ Á¦°ø µ¿ÀÇ</label><br>
+      <label><input type="checkbox" name="agree" value="2" id="two">°³ÀÎÁ¤º¸ »ç¿ë µ¿ÀÇ</label><br>
+      <label><input type="checkbox" name="agree" value="3" id="three">Á¦ 3ÀÚ ÀÌ¿ë µ¿ÀÇ</label><br>
+      <input type="button" value="È®ÀÎ" onclick="test()">
       <script type="text/javascript">
       function test() {
     	  const one = document.getElementsByName("agree")[0].checked;
@@ -22,7 +20,7 @@
     	  if(one==true&&two==true&&three==true){
     		  location.href = "join2.jsp";
     	  }else{
-    		  alert("ì „ë¶€ ë™ì˜í•˜ì…”ì•¼í•©ë‹ˆë‹¤.");
+    		  alert("ÀüºÎ µ¿ÀÇÇÏ¼Å¾ßÇÕ´Ï´Ù.");
     	  }
       }
 </script>

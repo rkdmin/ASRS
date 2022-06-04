@@ -1,13 +1,12 @@
-<%@ page contentType="text/html;charset=utf-8"
-	import="java.sql.*, AIR.*"%>
+<%@ page language="java" contentType="text/html; charset=euc_kr" 
+	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <html>
 <head>
+<meta charset="EUC-KR">
 <title>ASRS</title>
 </head>
 <body>
-	<%
-			request.setCharacterEncoding("utf-8");
-	%>
 	<jsp:include page="header.jsp" flush="false"/>
 	<h3>로그인</h3>
 	<form action="loginSystem.jsp">

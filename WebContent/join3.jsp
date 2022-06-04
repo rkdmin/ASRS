@@ -1,18 +1,16 @@
-<%@ page contentType="text/html;charset=utf-8"
-	import="java.sql.*, AIR.*"%>
+<%@ page language="java" contentType="text/html; charset=euc_kr" import="java.sql.*, AIR.*"%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <html>
 <head>
+<meta charset="EUC-KR">
 <title>ASRS</title>
 </head>
 <body>
-	<%
-			request.setCharacterEncoding("utf-8");
-	%>
 	<jsp:include page="header.jsp" flush="false"/>
-	<h3>1ì•½ê´€ë™ì˜ 2ì •ë³´ìž…ë ¥ 3ì™„ë£Œ</h3>
-      <div>íšŒì›ê°€ìž…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤<br>ë¡œê·¸ì¸ í•´ì£¼ì‹œê¸¸ ë°”ëžë‹ˆë‹¤.</div>
+	<h3>1¾à°üµ¿ÀÇ 2Á¤º¸ÀÔ·Â 3¿Ï·á</h3>
+      <div>È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù<br>·Î±×ÀÎ ÇØÁÖ½Ã±æ ¹Ù¶ø´Ï´Ù.</div>
       <br>
-      <a href="login.jsp"><button>ë©”ì¸ìœ¼ë¡œ</button></a>
+      <a href="login.jsp"><button>¸ÞÀÎÀ¸·Î</button></a>
 </body>
 </html>
 	

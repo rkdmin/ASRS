@@ -1,12 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=euc_kr" 
+	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
+<% request.setCharacterEncoding("euc-kr"); %>
+<HTML>
+  <HEAD>
+  <meta charset="EUC-KR">
+  <TITLE>노선검색</TITLE>
+  </HEAD>
+  <BODY>
+    <%  
+      String start = request.getParameter("start");
+      String arrive = request.getParameter("arrive");
+      String numString = request.getParameter("num");
+      int num = Integer.parseInt(numString);
+      String sDate = request.getParameter("sDate");
+      String aDate = request.getParameter("aDate");
+   %>
+  </BODY>
+</HTML>

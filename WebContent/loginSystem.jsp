@@ -1,32 +1,34 @@
-<%@ page contentType="text/html;charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=euc_kr" 
 	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <HTML>
-  <HEAD><TITLE>íšŒì›ê°€ì… ì²˜ë¦¬</TITLE></HEAD>
+  <HEAD>
+  <meta charset="EUC-KR">
+  <TITLE>È¸¿ø°¡ÀÔ Ã³¸®</TITLE>
+  </HEAD>
   <BODY>
     <%  
-      request.setCharacterEncoding("utf-8");
-  	   
-      String ID = request.getParameter("id");
+      String id = request.getParameter("id");
       String password = request.getParameter("password");
       
-      if (ID.equals("") || password.equals("")) {
-      		out.print("<script>alert('ë¡œê·¸ì¸ ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œê°€ ëª¨ë‘ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.')</script>");
+      if (id.equals("") || password.equals("")) {
+      		out.print("<script>alert('·Î±×ÀÎ ¾ÆÀÌµğ¿Í ÆĞ½º¿öµå°¡ ¸ğµÎ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù.')</script>");
       		out.print("<script>location='login.jsp'</script>");
        }
         
-   // ë¹„ë°€ë²ˆí˜¸ ì•”í˜¸í™”
+   // ºñ¹Ğ¹øÈ£ ¾ÏÈ£È­
        SHA256 sha256 = new SHA256();
-     	String secPassword = (sha256.encrypt(password));// ê¸°ì¡´ ë¹„ë°€ë²ˆí˜¸ ì•”í˜¸í™”
+     	String secPassword = (sha256.encrypt(password));// ±âÁ¸ ºñ¹Ğ¹øÈ£ ¾ÏÈ£È­
      	
-  	  Customer customer = AIRDB.loginProcess(ID, secPassword);// íšŒì›ì •ë³´ì°¾ê¸°
+  	  Customer customer = AIRDB.loginProcess(id, secPassword);// È¸¿øÁ¤º¸Ã£±â
   		
       if (customer == null) {
-     		out.print("<script>alert('ì˜ëª»ëœ ì•„ì´ë”” ë˜ëŠ” íŒ¨ìŠ¤ì›Œë“œ ì…ë‹ˆë‹¤.')</script>");     
+     		out.print("<script>alert('Àß¸øµÈ ¾ÆÀÌµğ ¶Ç´Â ÆĞ½º¿öµå ÀÔ´Ï´Ù.')</script>");     
      		out.print("<script>location='login.jsp'</script>");
       }
       else {
-		System.out.println("  <<for debug >> ë¡œê·¸ì¸í•œ ì•„ì´ë”” : " + customer.getId() + ", ì‚¬ìš©ì ì´ë¦„: " + customer.getName() + "\n");
-    	session.setAttribute("customer", customer);  // // ì„¸ì…˜ ê°ì²´ì— ë¡œê·¸ì¸í•œ ì€í–‰ì› ê°ì²´ bankerLoginë¥¼ ì´ë¦„ "bankerLogin"ë¡œ ì €ì¥
+		System.out.println("  <<for debug >> ·Î±×ÀÎÇÑ ¾ÆÀÌµğ : " + customer.getId() + ", »ç¿ëÀÚ ÀÌ¸§: " + customer.getName() + "\n");
+    	session.setAttribute("customer", customer);  // // ¼¼¼Ç °´Ã¼¿¡ ·Î±×ÀÎÇÑ ÀºÇà¿ø °´Ã¼ bankerLogin¸¦ ÀÌ¸§ "bankerLogin"·Î ÀúÀå
     	out.print("<script>location='main.jsp'</script>");
 
       }

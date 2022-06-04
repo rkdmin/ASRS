@@ -1,44 +1,45 @@
-<%@ page contentType="text/html;charset=utf-8"
+
+	<%@ page language="java" contentType="text/html; charset=euc_kr" 
 	import="java.sql.*, AIR.*, java.text.SimpleDateFormat, java.util.Calendar, java.util.Date"%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <html>
 <head>
+<meta charset="EUC-KR">
 <title>ASRS</title>
 </head>
 <body>
-	<%
-			request.setCharacterEncoding("utf-8");
-	%>
 	<jsp:include page="header.jsp" flush="false"/>
-	<h3>ë¹ ë¥¸ì˜ˆì•½</h3>
+	<h3>ºü¸¥¿¹¾à</h3>
 	<form action=route.jsp>
     <select name="start">
-     <option value="ì¸ì²œ">ì¸ì²œ</option>
-     <option value="ì˜¤ì‚¬ì¹´">ì˜¤ì‚¬ì¹´</option>
-     <option value="ì œì£¼">ì œì£¼</option>
-     <option value="ë‰´ìš•">ë‰´ìš•</option>
-     <option value="ê´Œ">ê´Œ</option>
-     <option value="íŒŒë¦¬">íŒŒë¦¬</option>
+     <option value="ÀÎÃµ">ÀÎÃµ</option>
+     <option value="¿À»çÄ«">¿À»çÄ«</option>
+     <option value="Á¦ÁÖ">Á¦ÁÖ</option>
+     <option value="´º¿å">´º¿å</option>
+     <option value="±¡">±¡</option>
+     <option value="ÆÄ¸®">ÆÄ¸®</option>
 	</select>
 	=>
-	<select name="arive">
-     <option value="ì¸ì²œ">ì¸ì²œ</option>
-     <option value="ì˜¤ì‚¬ì¹´">ì˜¤ì‚¬ì¹´</option>
-     <option value="ì œì£¼">ì œì£¼</option>
-     <option value="ë‰´ìš•">ë‰´ìš•</option>
-     <option value="ê´Œ">ê´Œ</option>
-     <option value="íŒŒë¦¬">íŒŒë¦¬</option>
+	<select name="arrive">
+     <option value="ÀÎÃµ">ÀÎÃµ</option>
+     <option value="¿À»çÄ«">¿À»çÄ«</option>
+     <option value="Á¦ÁÖ">Á¦ÁÖ</option>
+     <option value="´º¿å">´º¿å</option>
+     <option value="±¡">±¡</option>
+     <option value="ÆÄ¸®">ÆÄ¸®</option>
 	</select>
 	<br><br>
-	ì¸ì›ìˆ˜ : <input type=number value="num" min="1" max="10"><br><br>
+	ÀÎ¿ø¼ö : <input type=number name="num" min="1" max="10"><br><br>
 	<%
-		// í˜„ìž¬ ë‚ ì§œ ì¶œë ¥
+		// ÇöÀç ³¯Â¥ Ãâ·Â
 		Date now = Calendar.getInstance().getTime();       
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat formatter2 = new SimpleDateFormat("dd");
 		String min = formatter.format(now);         
 	%>
-	ë‚ ì§œ : <input type="date" value=<%=min %> min=<%=min%>><br><br>
-	<input type="submit" value="ê²€ìƒ‰í•˜ê¸°">
+	Ãâ¹ß³¯Â¥ : <input type="date" value=<%=min %> min=<%=min%> name="sDate"><br><br>
+	µµÂø³¯Â¥ : <input type="date" value=<%=min %> min=<%=min%> name="aDate"><br><br>
+	<input type="submit" value="°Ë»öÇÏ±â">
 	</form>
 </body>
 </html>

@@ -15,7 +15,7 @@ public class AIRDB {
 	static String database;
     
 	static String driverMySQL = "com.mysql.jdbc.Driver";
-	static String URLLocalMySQL = "jdbc:mysql://localhost:3306/" ;
+	static String URLLocalMySQL = "jdbc:mysql://localhost:3306/";
 	static String URLRemoteMySQL = "jdbc:mysql://203.252.21.54:3306/";
     
     static {
@@ -109,7 +109,6 @@ public class AIRDB {
 			customer.output();
 			String sql = "insert into customer values (?, ?, ?, ?, ?, ?, ?, ?);" ;
 			prStmt= con.prepareStatement(sql);  
-			
 			prStmt.setString(1, customer.getId());
  			prStmt.setString(2, customer.getPassword());
  			prStmt.setString(3, customer.getName());
@@ -128,6 +127,7 @@ public class AIRDB {
 		}	 
  	}
  	
+ 	// 회원가입 및 로그인 
  	// 아이디중복을 확인하는 메소드 중복이 없으면 true
  	public static boolean idDuplication(String id) {
  		return true;
@@ -137,6 +137,11 @@ public class AIRDB {
  	public static Customer loginProcess(String id,  String password) {
  		return null;
  	}
+ 	
+ 	
+ 	// 노선 검색
+ 	// 날짜에 맞는 
+ 	
 
 }
     

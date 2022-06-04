@@ -1,47 +1,51 @@
-<%@ page contentType="text/html;charset=utf-8"
+
+	<%@ page language="java" contentType="text/html; charset=euc_kr" 
 	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <HTML>
-  <HEAD><TITLE>íšŒì›ê°€ì… ì²˜ë¦¬</TITLE></HEAD>
+  <HEAD>
+  <meta charset="EUC-KR">
+  <TITLE>È¸¿ø°¡ÀÔ Ã³¸®</TITLE>
+  </HEAD>
   <BODY>
 	<jsp:useBean class="AIR.Customer" id="customer" scope="request" />
 	<jsp:setProperty name="customer" property="*" />
-    <%  
-	    request.setCharacterEncoding("utf-8");
+    <% 
     	String password = request.getParameter("password");
     	String password2 = request.getParameter("password2");
-    	// ì¬ì…ë ¥ ë¹„ë°€ë²ˆí˜¸ ë‹¤ë¥¼ì‹œ
+    	// ÀçÀÔ·Â ºñ¹Ğ¹øÈ£ ´Ù¸¦½Ã
     	if(!password.equals(password2)){
-    		out.print("<script>alert('ë‹¤ì‹œ ì…ë ¥í•œ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤. ')</script>");
+    		out.print("<script>alert('´Ù½Ã ÀÔ·ÂÇÑ ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù. ')</script>");
 			out.print("<script>location='join2.jsp'</script>");
     	}
 
-    	// ë¹„ë°€ë²ˆí˜¸ í¬ë§· í™•ì¸(ì˜ë¬¸, íŠ¹ìˆ˜ë¬¸ì, ìˆ«ì í¬í•¨ 8ì ì´ìƒ)
+    	// ºñ¹Ğ¹øÈ£ Æ÷¸Ë È®ÀÎ(¿µ¹®, Æ¯¼ö¹®ÀÚ, ¼ıÀÚ Æ÷ÇÔ 8ÀÚ ÀÌ»ó)
     	Pattern passPattern1 = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$");
     	Matcher passMatcher1 = passPattern1.matcher(password);
     	if(!passMatcher1.find()){
-			out.print("<script>alert('ë¹„ë°€ë²ˆí˜¸ëŠ” ì˜ë¬¸ê³¼ íŠ¹ìˆ˜ë¬¸ì ìˆ«ìë¥¼ í¬í•¨í•˜ë©° 8ì ì´ìƒì´ì–´ì•¼ í•©ë‹ˆë‹¤.')</script>");
+			out.print("<script>alert('ºñ¹Ğ¹øÈ£´Â ¿µ¹®°ú Æ¯¼ö¹®ÀÚ ¼ıÀÚ¸¦ Æ÷ÇÔÇÏ¸ç 8ÀÚ ÀÌ»óÀÌ¾î¾ß ÇÕ´Ï´Ù.')</script>");
 			out.print("<script>location='join2.jsp'</script>");
     	}
     	
-    	// ì•„ì´ë””ê°€ ì¤‘ë³µ ì¼ì‹œ
+    	// ¾ÆÀÌµğ°¡ Áßº¹ ÀÏ½Ã
     	//AIRDB.loadConnectAir();	
     	//boolean result1 = idDuplication(String id);
     	//if(result1 == false){
-    	//	out.print("<script>alert('ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ê°€ ìˆìŠµë‹ˆë‹¤.')</script>");
+    	//	out.print("<script>alert('ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµğ°¡ ÀÖ½À´Ï´Ù.')</script>");
 		//	out.print("<script>location='join2.jsp'</script>");
     	//}
     	
-    	// ë¹„ë°€ë²ˆí˜¸ ì•”í˜¸í™”
+    	// ºñ¹Ğ¹øÈ£ ¾ÏÈ£È­
        	SHA256 sha256 = new SHA256();
-       	String secPassword = (sha256.encrypt(password));// ê¸°ì¡´ ë¹„ë°€ë²ˆí˜¸ ì•”í˜¸í™”
-       	customer.setPassword(secPassword);// ì•”í˜¸í™”ëœ ë¹„ë°€ë²ˆí˜¸ ì‚½ì…
+       	String secPassword = (sha256.encrypt(password));// ±âÁ¸ ºñ¹Ğ¹øÈ£ ¾ÏÈ£È­
+       	customer.setPassword(secPassword);// ¾ÏÈ£È­µÈ ºñ¹Ğ¹øÈ£ »ğÀÔ
        	customer.output();
        	Customer c = customer;
        	
        	AIRDB.loadConnectAir();	
     	boolean result2 = AIRDB.insertCustomer(c);
     	if(result2 == true){
-    		out.print("<script>alert('íšŒì›ê°€ì… ì™„ë£Œ!')</script>");
+    		out.print("<script>alert('È¸¿ø°¡ÀÔ ¿Ï·á!')</script>");
     	}
         out.print("<script>location='join3.jsp'</script>");
     %>

@@ -21,6 +21,8 @@
     	  const three = document.getElementsByName("agree")[2].checked;
     	  if(one==true&&two==true&&three==true){
     		  location.href = "join2.jsp";
+    	  }else{
+    		  alert("전부 동의하셔야합니다.");
     	  }
       }
 </script>

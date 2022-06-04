@@ -130,8 +130,7 @@ public class AIRDB {
  	// 회원가입 및 로그인 
     // 아이디중복을 확인하는 메소드 중복이 없으면 true
 public static boolean idDuplication(String id) {
-       
-       
+      
        String sql = "select id from Customer where id =? ";
        
        try { 
@@ -171,22 +170,36 @@ public static boolean idDuplication(String id) {
        return null;
     }
     public static Customer getCustomerFromRS(ResultSet rs) {  
-      Customer customer = null;
+        Customer cu = new Customer();
 
-      try {
-         if (rs.getRow() ==  0)
-            return null;
-         
-         String id = rs.getString("id");  // ID 애트리뷰트 값을 저장
+        try {
+           //if (rs.getRow() ==  0)
+           //   return null;
+           
+           String id = rs.getString("id");  // ID 애트리뷰트 값을 저장
+           String password = rs.getString("password");
+           String name = rs.getString("name");
+           String gender = rs.getString("gender");
+           String number = rs.getString("number");
+           int age = rs.getInt("age");
+           String passportNo = rs.getString("passportNo");
+           String address = rs.getString("address");
+           
+           cu.setId(id);   // ResultSet의 애트리뷰트 값을 get하여 필드의 값으로 저장 
+           cu.setPassword(password);
+           cu.setName(name);
+           cu.setGender(gender);
+           cu.setNumber(number);
+           cu.setAge(age);
+           cu.setPassportNo(passportNo);
+           cu.setAddress(address);
+           
+        } catch( SQLException ex )        {
+           System.err.println("\n  ??? SQL exec error in getCustomerFromRS(): " + ex.getMessage() );
+        }
 
-         customer.setId( rs.getString("id") );   // ResultSet의 애트리뷰트 값을 get하여 필드의 값으로 저장 
-         customer.setPassword( rs.getString("password") );
-      } catch( SQLException ex )        {
-         System.err.println("\n  ??? SQL exec error in getCustomerFromRS(): " + ex.getMessage() );
-      }
-
-      return customer;
-   }
+        return cu;
+     }
     // 날짜에 맞는 노선검색(route테이블에서)
  	public static ResultSet getRoute(String date) {
  		return rs;// 암거나 리턴한거고 알맞은 노선들 리턴해주면댐

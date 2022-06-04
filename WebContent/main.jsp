@@ -8,7 +8,7 @@
 <title>ASRS</title>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="false" />
+	<jsp:include page="header2.jsp" flush="false" />
 	<h3>빠른예약</h3>
 	<form action=route.jsp method="post">
     <select name="start">

@@ -9,11 +9,10 @@ public class Route {
 	String aAirName; //도착공항이름 ArriveAirName
 	String sTime; //StartTime
 	String aTime; //도착시간 ArriveTime
-	String time; // 운행날짜
-	
+	String date;// 운행날짜
 	public Route() {}
 	public Route(String routeName, int sAirNo, int aAirNo, String sAirName, String aAirName, String sTime, String aTime,
-			String time) {
+			String date) {
 		super();
 		this.routeName = routeName;
 		this.sAirNo = sAirNo;
@@ -22,7 +21,7 @@ public class Route {
 		this.aAirName = aAirName;
 		this.sTime = sTime;
 		this.aTime = aTime;
-		this.time = time;
+		this.date = date;
 	}
 	public String getRouteName() {
 		return routeName;
@@ -67,16 +66,16 @@ public class Route {
 		this.aTime = aTime;
 	}
 	public String getTime() {
-		return time;
+		return date;
 	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setTime(String date) {
+		this.date = date;
 	}
 	
 	@Override
 	public String toString() {
 		return "Route [routeName=" + routeName + ", sAirNo=" + sAirNo + ", aAirNo=" + aAirNo + ", sAirName=" + sAirName
-				+ ", aAirName=" + aAirName + ", sTime=" + sTime + ", aTime=" + aTime + ", time=" + time + "]";
+				+ ", aAirName=" + aAirName + ", sTime=" + sTime + ", aTime=" + aTime + ", date=" + date + "]";
 	}
 	
 	

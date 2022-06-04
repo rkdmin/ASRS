@@ -4,7 +4,7 @@
 <HTML>
   <HEAD>
   <meta charset="EUC-KR">
-  <TITLE>회원가입 처리</TITLE>
+  <TITLE>로그인 처리</TITLE>
   </HEAD>
   <BODY>
     <%  

@@ -138,10 +138,11 @@ public class AIRDB {
  		return null;
  	}
  	
- 	
  	// 노선 검색
- 	// 날짜에 맞는 
- 	
+ 	// 날짜에 맞는 노선검색(route테이블에서)
+ 	public static ResultSet getRoute(String date) {
+ 		return rs;// 암거나 리턴한거고 알맞은 노선들 리턴해주면댐
+ 	}
 
 }
     

@@ -14,6 +14,12 @@
       int num = Integer.parseInt(numString);
       String sDate = request.getParameter("sDate");
       String aDate = request.getParameter("aDate");
+      
+      AIRDB.loadConnectAir();		
+  	  ResultSet result = AIRDB.getRoute(sDate);
+  	  request.setAttribute("title", "출발노선"); 
+      request.setAttribute("RS", result); 
+      request.getRequestDispatcher("ListRS.jsp").forward(request, response);
    %>
   </BODY>
 </HTML>

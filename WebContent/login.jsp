@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=euc_kr" 
+<%@ page language="java" contentType="text/html; charset=utf-8" 
 	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
 <% request.setCharacterEncoding("euc-kr"); %>
 <html>

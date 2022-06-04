@@ -131,7 +131,14 @@ public class AIRDB {
  	}
  	
  	// 아이디중복을 확인하는 메소드 중복이 없으면 true
- 	// public static boolean idDuplication(String id);
+ 	public static boolean idDuplication(String id) {
+ 		return true;
+ 	}
+ 	
+ 	// 아이디 비번으로 로그인 소비자 객체 반환
+ 	public static Customer loginProcess(String id,  String password) {
+ 		return null;
+ 	}
 
 }
     

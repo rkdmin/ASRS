@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=euc_kr" import="java.sql.*, AIR.*"%>
-<% request.setCharacterEncoding("euc-kr"); %>>
+<% request.setCharacterEncoding("euc-kr"); %>
 <html>
 <head>
 <meta charset="EUC-KR">

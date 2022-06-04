@@ -29,7 +29,7 @@
       }
       else {
 		System.out.println("  <<for debug >> 로그인한 아이디 : " + customer.getId() + ", 사용자 이름: " + customer.getName() + "\n");
-    	session.setAttribute("customer", customer);  // // 세션 객체에 로그인한 은행원 객체 bankerLogin를 이름 "bankerLogin"로 저장
+    	session.setAttribute("customer", customer);  // // 세션처리
     	out.print("<script>location='main.jsp'</script>");
 
       }

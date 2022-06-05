@@ -222,9 +222,38 @@ public static boolean idDuplication(String id) {
      }
     
     // 노선 출력용 정보
- 	public static ResultSet getRoute(String date, String routeName) {
-        String sql = "select routeName as 노선명, sAirName as 출발공항이름, aAirName as 도착공항이름, sTime as 출발시간, aTime as 도착시간, price as 금액 "
+    public static ResultSet getRoute(String date, String routeName) {
+        String sql = "select uniqueNo as 노선번호, routeName as 노선명, sAirName as 출발공항이름, aAirName as 도착공항이름, sTime as 출발시간, aTime as 도착시간, price as 금액 "
                 + "from Route where routeName = '"+routeName+"' and date = '"+date+"';";
+        System.out.println("   >> SQL : " + sql + "\n");
+
+        return selectQuery(sql);
+     }
+    
+    public static boolean insertReserve(Reserve reserve) {
+      try {
+         reserve.output();
+         String sql = "insert into Reserve values (?, ?, ?, ?, ?);" ;
+         prStmt= con.prepareStatement(sql);  
+         prStmt.setString(1, null);
+          prStmt.setInt(2, reserve.getUniqueNo());
+          prStmt.setInt(3, reserve.getId());
+          prStmt.setInt(4, reserve.getNum());
+          prStmt.setInt(5, reserve.getTotalPrice());
+          
+         prStmt.executeUpdate();
+         return true;
+      }
+      catch(SQLException ex ) {
+         System.err.println("\n  ??? SQL exec error in executeAnyQuery(): " + ex.getMessage() );
+         ex.printStackTrace();
+         return false;
+      }    
+    }
+    
+    // 고객 예약 현황 출력
+    public static ResultSet getCustomerReserve(String id) {
+        String sql = "select * from Reserve where id = '"+id+"';";
         System.out.println("   >> SQL : " + sql + "\n");
 
         return selectQuery(sql);

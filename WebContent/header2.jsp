@@ -8,6 +8,6 @@
 <body>
 	ASRS
 	<a href="logoutSystem.jsp">로그아웃</a>
-	예약현황
+	<a href="reservation.jsp">예약현황</a> 
 </body>
 </html>

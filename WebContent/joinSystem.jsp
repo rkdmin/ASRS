@@ -16,7 +16,7 @@
     	String password2 = request.getParameter("password2");
     	// 재입력 비밀번호 다를시
     	if(!password.equals(password2)){
-    		out.print("<script>alert('다시 입력한 비밀번호가 다릅니다. ')</script>");
+    		out.print("<script>alert('다시 입력한 비밀번호가 다릅니다.')</script>");
 			out.print("<script>location='join2.jsp'</script>");
     	}
 

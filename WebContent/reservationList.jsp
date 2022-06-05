@@ -47,8 +47,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  <table id=table align=center valign=top border=1 cellpadding=8 cellspacing=0 bordercolor=#999999>
 	   <%      		
 	    // 가격 따로빼기, 노선번호 따로빼기
-	    int[] price = new int[cntTuples];
-	    int[] uniqueNo = new int[cntTuples];
+	    int[] reserveId = new int[cntTuples];
 	   // js에 튜플개수 인원수 넣기
 	   out.println("<input type=\"hidden\" id=\"cnt\" value=\" "+ cntTuples+ "\">"  );
 	   out.println("<input type=\"hidden\" id=\"num\" value=\" "+ num+ "\">"  );
@@ -61,10 +60,8 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 
 			int cnt = 0;
 			while(rs.next()) {
-				price[cnt]= rs.getInt("금액");
-				uniqueNo[cnt] = rs.getInt("노선번호");
-				out.println("<input type=\"hidden\" id=\"price" +cnt+ "\" value=\"" + price[cnt] + "\">" );
-				out.println("<input type=\"hidden\" id=\"uniqueNo" +cnt+ "\" value=\"" + uniqueNo[cnt] + "\">" );
+				reserveId[cnt] = rs.getInt("예약번호");
+				out.println("<input type=\"hidden\" id=\"reserveId" +cnt+ "\" value=\"" + reserveId[cnt] + "\">" );
 				cnt++;
 				out.println("<tr onClick=\"HighlightRow(this)\">" );
 
@@ -79,54 +76,34 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
       
 	  </table >
 	  
-	  <%-- 구매버튼누르면 정보전달 --%>
-	  <form action="reserveSystem.jsp">
-	  	<p>총가격 : <input id="total" name="totalPrice" type="text" value=""></p>	  
-	  	<%
-	  		Customer customer = (Customer) session.getAttribute("customer");
-	  	    String id = customer.getId();
-	  	%>
-	  	<input type="hidden" id ="uniqueNoTarget"name="uniqueNo" value="">
-	  	<input type="hidden" name="id" value="<%=customer.getId()%>">
-	  	<input type="hidden" name="num" value="<%=num%>">
-	  	<input type="submit" value="구매"> 
+	  <%-- 취소버튼누르면 정보전달 --%>
+	  <form action="reserveCancelSystem.jsp">
+	  	<input type="hidden" id ="reserveIdTarget"name="reserveId" value="">
+	  	<input type="submit" value="취소"> 
 	  </form>
 	  
 	  <script type="text/javascript">
 	  const cnt = document.querySelector("#cnt").value;// 총튜플개수
-	  const price = new Array();// 가격
-	  const uniqueNo = new Array();// 고유번호
-	  const total = document.querySelector("#total");// 총가격
-	  const uniqueNoTarget = document.querySelector("#uniqueNoTarget");// 노선번호
-	  const numQ = document.querySelector("#num").value;// 인원수
-	  var num = parseInt(numQ);
+	  const reserveId = new Array();// 예약번호
+	  const uniqueNoTarget = document.querySelector("#reserveIdTarget");
 	  let select = 0;
-	  let sum=0;
 	  for(var i = 0; i < cnt; i++){
-		  priceQ = document.querySelector("#price" + i);
-		  price[i] = priceQ.value;
-		  uniqueNoQ = document.querySelector("#uniqueNo" + i);
-		  uniqueNo[i] = uniqueNoQ.value;
+		  reserveId = document.querySelector("#reserveId" + i);
+		  reserveId[i] = reserveId.value;
 	  }
 	  function HighlightRow(obj){
 		  const index = obj.rowIndex - 1;
-	  	  obj.classList.toggle("clickColor");
+	  	  obj.classList.toggle("clickColor2");
 	  	  var b = parseInt(price[index]);
-	  	  if(obj.className == "clickColor"){
-	  		  
+	  	  if(obj.className == "clickColor2"){
 	  		if(select >= 1){
 	  			alert("2개 이상 설정할 수 없습니다.");
-	  			obj.classList.toggle("clickColor");
+	  			obj.classList.toggle("clickColor2");
 	  			return 0;
 	  		}
-	  		select++;
-	  		sum += b*num;
 	  	  }else{
-	  		select--;
-	  		sum -= b*num;
 	  	  }
-	  	  total.value = sum;
-	  	  uniqueNoTarget.value = uniqueNo[index];
+	  	  reserveIdTarget.value = reserveId[index];
 		}
 	</script>
     <br>

@@ -1,4 +1,4 @@
-	package AIR;
+   package AIR;
 
 public class Route {
 
@@ -93,5 +93,19 @@ public class Route {
             + ", aAirName=" + aAirName + ", sTime=" + sTime + ", aTime=" + aTime + ", date=" + date + ", price="
             + price + "]";
    }
+   
+// 노선정보 출력
+      public void output() {
+         System.out.print("  * 고유번호: " + uniqueNo +",  ");
+         System.out.print("비밀번호: " + routeName +",  ");
+         System.out.print("출발공항번호: " + sAirNo+",  ");
+         System.out.print("도착공항번호: " + aAirNo+",   ");
+         System.out.print("출발공항이름: " + sAirName +",");
+         System.out.print("도착공항이름: " + aAirName +",   ");
+         System.out.print("출발시간: " + sTime+",   ");
+         System.out.print("도착시간: " + aTime +"\n");
+         System.out.print("날짜: " + date +"\n");
+         System.out.print("가격: " + price +"\n");
+      }   
    
 }

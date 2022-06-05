@@ -6,6 +6,7 @@
     <br> 
 	<%	
  	       ResultSet rs = (ResultSet) request.getAttribute("RS");
+		   String date = request.getParameter("date");
  	       if (rs == null) {
  	    	   out.println("<H3 align=center >ResultSet 객체가 전달되지 않았습니다.</H3>");  
  	    	   return;
@@ -74,11 +75,16 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
       %>
       
 	  </table >
+	  <%-- 추가버튼누르면 정보전달 --%>
+	  <form action="addRoute.jsp">
+	  	<input type="hidden" name="date" value="<%= date %>">
+	  	<input type="submit" value="추가"> 
+	  </form>
 	  
-	  <%-- 취소버튼누르면 정보전달 --%>
+	  <%-- 삭제버튼누르면 정보전달 --%>
 	  <form action="routeCancelSystem.jsp">
 	  	<input type="hidden" id ="reserveIdTarget"name="reserveId" value="">
-	  	<input type="submit" value="취소"> 
+	  	<input type="submit" value="삭제"> 
 	  </form>
 	  
 	  <script type="text/javascript">

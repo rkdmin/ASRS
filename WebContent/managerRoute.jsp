@@ -14,6 +14,7 @@
   	  ResultSet result = AIRDB.getManagerRoute(date);
   	  request.setAttribute("title", date); 
       request.setAttribute("RS", result); 
+      request.setAttribute("date", date);
       request.getRequestDispatcher("routeList.jsp").forward(request, response);
    %>
   </BODY>

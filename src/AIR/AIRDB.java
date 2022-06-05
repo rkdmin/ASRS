@@ -318,4 +318,30 @@ public static boolean idDuplication(String id) {
               return false;
            }
          }
+      // Route 객체를 노선 테이블 route의 투플로 삽입하는 메소드
+         public static boolean insertRoute(Route route) {
+           try {
+              route.output();
+              String sql = "insert into route values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
+              prStmt= con.prepareStatement(sql);  
+              prStmt.setInt(1, route.getUniqueNo());
+               prStmt.setString(2, route.getRouteName());
+               prStmt.setInt(3, route.getsAirNo());
+               prStmt.setInt(4, route.getaAirNo());
+               prStmt.setString(5, route.getsAirName());
+               prStmt.setString(6, route.getsAirName());
+               prStmt.setString(7, route.getsTime());
+               prStmt.setString(8, route.getaTime());
+               prStmt.setString(9, route.getDate());
+               prStmt.setInt(10, route.getPrice());
+               
+              prStmt.executeUpdate();
+              return true;
+           }
+           catch(SQLException ex ) {
+              System.err.println("\n  ??? SQL exec error in executeAnyQuery(): " + ex.getMessage() );
+              ex.printStackTrace();
+              return false;
+           }
+         }
 }

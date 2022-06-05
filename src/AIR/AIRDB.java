@@ -243,13 +243,14 @@ public static boolean idDuplication(String id) {
        }
      }
     // 노선 출력용 정보
-    public static ResultSet getRoute(String date, String routeName) {
-        String sql = "select uniqueNo as 노선번호, routeName as 노선명, sAirName as 출발공항이름, aAirName as 도착공항이름, sTime as 출발시간, aTime as 도착시간, price as 금액 "
-                + "from Route where routeName = '"+routeName+"' and date = '"+date+"';";
-        System.out.println("   >> SQL : " + sql + "\n");
+  // 노선 출력용 정보
+     public static ResultSet getRoute(String date, String routeName) {
+         String sql = "select uniqueNo as 노선번호, routeName as 노선명, sAirName as 출발공항이름, aAirName as 도착공항이름, sTime as 출발시간, aTime as 도착시간, price as 금액 "
+                 + "from Route where routename = '"+routeName+"' and date = '"+date+"';";
+         System.out.println("   >> SQL : " + sql + "\n");
 
-        return selectQuery(sql);
-     }
+         return selectQuery(sql);
+      }
     //예약현황 출력
     public static ResultSet getReserve(int id) {
         String sql = "select reserveId as 예약번호, uniqueNo as 노선번호, id as 아이디, num as 인원수, totalPrice as 총 구매 가격"
@@ -267,17 +268,17 @@ public static boolean idDuplication(String id) {
 
         return selectQuery(sql);
      }
-    //날짜별 전체 예약현황 출력
-    public static ResultSet getManagerReserve(String date) {
-       String sql = "select id as 아이디, reserveId as 예약번호, num as 예매수, totalPrice as 총가격, routeName as 노선명, sAirName as 출발공항이름, aAirName as 도착공항이름, sTime as 출발시간, aTime as 도착시간"
+  //날짜별 전체 예약현황 출력
+    public static ResultSet getManagerReserve() {
+       String sql = "select id as 아이디, reserveId as 예약번호, num as 예매수, totalPrice as 총가격, routeName as 노선명, sAirName as 출발공항이름, aAirName as 도착공항이름, sTime as 출발시간, aTime as 도착시간 "
               + "from Reserve, Route "
-              + "where Reserve.uniqueNo = Route.uniqueNo and  date = '"+date+"';";
+              + "where Reserve.uniqueNo = Route.uniqueNo;";
         System.out.println("   >> SQL : " + sql + "\n");
 
         return selectQuery(sql);
      }
     //날짜별 전체 노선출력
-        public static ResultSet getRouteReserve(String date) {
+        public static ResultSet getManagerRoute(String date) {
             String sql = "select * from Route where date = '"+date+"';";
             System.out.println("   >> SQL : " + sql + "\n");
 
@@ -290,6 +291,23 @@ public static boolean idDuplication(String id) {
               String sql = "delete from reserve where reserveId =? ";
               prStmt= con.prepareStatement(sql);
               prStmt.setInt(1, reserveId);
+               
+              prStmt.executeUpdate();
+              return true;
+           }
+           catch(SQLException ex ) {
+              System.err.println("\n  ??? SQL exec error in executeAnyQuery(): " + ex.getMessage() );
+              ex.printStackTrace();
+              return false;
+           }
+         }
+         // Manager가 노선 취소 쿼리
+         public static boolean cancelRoute(int uniqueNo) {
+           try {
+              
+              String sql = "delete from Route where uniqueNo =? ";
+              prStmt= con.prepareStatement(sql);
+              prStmt.setInt(1, uniqueNo);
                
               prStmt.executeUpdate();
               return true;

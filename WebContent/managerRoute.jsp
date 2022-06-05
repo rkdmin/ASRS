@@ -8,17 +8,10 @@
   </HEAD>
   <BODY>
     <%  
-      String start = request.getParameter("start");
-      String arrive = request.getParameter("arrive");
-      String routeName = start + "-" + arrive;
-      String numString = request.getParameter("num");
-      System.out.println(numString);
-      int num = Integer.parseInt(numString);
       String date = request.getParameter("date");
       System.out.println(date);
       AIRDB.loadConnectAir();		
-  	  ResultSet result = AIRDB.getRoute(date, routeName);
-  	  request.setAttribute("num", num);
+  	  ResultSet result = AIRDB.getManagerRoute(date);
   	  request.setAttribute("title", date); 
       request.setAttribute("RS", result); 
       request.getRequestDispatcher("routeList.jsp").forward(request, response);

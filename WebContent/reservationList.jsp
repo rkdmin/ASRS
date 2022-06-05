@@ -45,8 +45,9 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  
 	  <table id=table align=center valign=top border=1 cellpadding=8 cellspacing=0 bordercolor=#999999>
 	   <%      		
-	    // 가격 따로빼기, 노선번호 따로빼기
+	    // 예약번호 따로빼기
 	    int[] reserveId = new int[cntTuples];
+	   
 	   // js에 튜플개수 인원수 넣기
 	   out.println("<input type=\"hidden\" id=\"cnt\" value=\" "+ cntTuples+ "\">"  );
 			out.println("<tr bgcolor=#DDDDDD>" );
@@ -59,6 +60,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 			int cnt = 0;
 			while(rs.next()) {
 				reserveId[cnt] = rs.getInt("예약번호");
+				out.println("<input type=\"hidden\" id=\"reserveId" +cnt+ "\" value=\"" + reserveId[cnt] + "\">" );
 				cnt++;
 				out.println("<tr onClick=\"HighlightRow(this)\">" );
 
@@ -80,10 +82,17 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  </form>
 	  
 	  <script type="text/javascript">
+	  const cnt = document.querySelector("#cnt").value;// 총튜플개수
+	  const reserveId = new Array();// 고유번호
+	  const reserveIdTarget = document.querySelector("#reserveIdTarget");// 노선번호
 	  let select = 0;
+	  for(var i = 0; i < cnt; i++){
+		  reserveIdQ = document.querySelector("#reserveId"+ i);
+		  reserveId[i] = reserveIdQ.value;
+		  console.log(reserveId[i]);
+	  }
 	  function HighlightRow(obj){
-		  const index = obj.rowIndex;
-		  console.log(index);
+		  const index = obj.rowIndex-1;
 	  	  obj.classList.toggle("clickColor2");
 	  	  if(obj.className == "clickColor2"){
 	  		if(select >= 1){
@@ -95,7 +104,8 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  	  }else{
 	  		select--;
 	  	  }
-	  	  reserveIdTarget.value = index;
+	  	  reserveIdTarget.value = reserveId[index];
+	  	console.log("fuck" + reserveId[index]);
 		}
 	</script>
     <br>

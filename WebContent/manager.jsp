@@ -23,7 +23,6 @@
 	 <input type="date" value=<%=date %> min=<%=date%> name="date" class="forms">
 	 <input type="submit" value="노선관리">
 	 </form>
-	
 	</div>
 </section>
 </body>

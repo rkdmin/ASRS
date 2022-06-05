@@ -5,7 +5,7 @@
   <BODY>
     <br> 
 	<%	
- 	
+	       String num = request.getParameter("num");
  	       ResultSet rs = (ResultSet) request.getAttribute("RS");
  	       if (rs == null) {
  	    	   out.println("<H3 align=center >ResultSet 객체가 전달되지 않았습니다.</H3>");  
@@ -48,7 +48,9 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	   <%      		
 	    // 가격 따로빼기
 	    int[] price = new int[cntTuples];
-
+	   // js에 튜플개수 인원수 넣기
+	   out.println("<input type=\"hidden\" id=\"cnt\" value=\" "+ cntTuples+ "\">"  );
+	   out.println("<input type=\"hidden\" id=\"num\" value=\" "+ num+ "\">"  );
 			out.println("<tr bgcolor=#DDDDDD>" );
 
 			for(int i=0; i<columns.length; i++){
@@ -60,7 +62,6 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 			while(rs.next()) {
 				price[cnt]= rs.getInt("금액");
 				out.println("<input type=\"hidden\" id=\"price" +cnt+ "\" value=\"" + price[cnt] + "\">" );
-				out.println("<input type=\"hidden\" id=\"cnt" +cntTuples+ "\">" );
 				cnt++;
 				out.println("<tr onClick=\"HighlightRow(this)\">" );
 
@@ -74,13 +75,38 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
       %>
       
 	  </table >
+	  <p>총가격 : <input id="total" type="text" value=""></p>
 	  <button onclick="alert('onclickEvent')">구매</button>
 	  <script type="text/javascript">
-	  const name = document.getElementById('name').value;
-      document.getElementById("result").innerText = name;
+	  const cnt = document.querySelector("#cnt").value;// 총튜플개수
+	  const price = new Array();// 가격
+	  const total = document.querySelector("#total");// 총가격
+	  const numQ = document.querySelector("#num").value;// 인원수
+	  var num = parseInt(numQ);
+	  let select = 0;
+	  let sum=0;
+	  for(var i = 0; i < cnt; i++){
+		  priceQ = document.querySelector("#price" + i);
+		  price[i] = priceQ.value;
+	  }
 	  function HighlightRow(obj){
+		  const index = obj.rowIndex - 1;
 	  	  obj.classList.toggle("clickColor");
-	  	  
+	  	  var b = parseInt(price[index]);
+	  	  if(obj.className == "clickColor"){
+	  		  
+	  		if(select >= 1){
+	  			alert("2개 이상 설정할 수 없습니다.");
+	  			obj.classList.toggle("clickColor");
+	  			return 0;
+	  		}
+	  		select++;
+	  		sum += b*num;
+	  	  }else{
+	  		select--;
+	  		sum -= b*num;
+	  	  }
+	  	  total.value = sum;
 		}
 	</script>
 	  

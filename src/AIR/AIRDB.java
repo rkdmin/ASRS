@@ -169,6 +169,26 @@ public static boolean idDuplication(String id) {
       }
        return null;
     }
+    //아이디 비번으로 로그인 소비자 객체 반환(일치하는 회원정보없으면 null값 반환)
+    public static Customer loginManagerProcess(String id,  String password) {
+       try {                      
+         // SQL 질의문을 수행한다.
+         String sql = "select * from Customer where id=('admin' or 'admin2') and password='03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4';" ;
+         outputForDebug("In getCustomer() SQL : " + sql);
+         PreparedStatement prStmt = con.prepareStatement(sql);
+         prStmt.setString(1, id);
+         prStmt.setString(2, password);
+
+         ResultSet rs = prStmt.executeQuery();  
+         if (rs.next())  { 
+            Customer customer = getCustomerFromRS(rs);
+            return customer;
+         }         
+      } catch( SQLException ex ) {             
+         System.err.println("\n  ??? SQL exec error in getCustomer(): " + ex.getMessage() );
+      }
+       return null;
+    }
     public static Customer getCustomerFromRS(ResultSet rs) {  
         Customer cu = new Customer();
 
@@ -201,6 +221,7 @@ public static boolean idDuplication(String id) {
         return cu;
      }
     
+    // 노선 출력용 정보
  	public static ResultSet getRoute(String date, String routeName) {
         String sql = "select routeName as 노선명, sAirName as 출발공항이름, aAirName as 도착공항이름, sTime as 출발시간, aTime as 도착시간, price as 금액 "
                 + "from Route where routeName = '"+routeName+"' and date = '"+date+"';";

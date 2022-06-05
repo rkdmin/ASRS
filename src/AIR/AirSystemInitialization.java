@@ -71,7 +71,7 @@ public class AirSystemInitialization {
                  
                  " DROP TABLE IF EXISTS  air.Route ;",
                   " CREATE TABLE Route( " +
-                      " uniqueNo int(11) NOT NULL," +
+                      " uniqueNo int NOT NULL AUTO_INCREMENT," +
                         " routeName varchar(20) NOT NULL, " +
                         " sAirNo int(11) NOT NULL, " +
                         " aAirNo int(11) NOT NULL, " +
@@ -81,7 +81,7 @@ public class AirSystemInitialization {
                         " aTime varchar(20) NOT NULL, " +
                         " date varchar(20) NOT NULL, " +
                         " price int(11) NOT NULL, " +
-                        " PRIMARY KEY (uniqueNo,sAirNo,aAirNo) " +
+                        " PRIMARY KEY (uniqueNo) " +
                     " );",
                     
                   "insert Route values(1,'인천-오사카',15772600,570073200,'인천공항','12:30','간사이공항','13:40','2022-06-08',519000);" ,
@@ -133,7 +133,8 @@ public class AirSystemInitialization {
                "insert Route values(47,'인천-괌',15772600,671642321,'인천공항','22:20','앤토니오B.원팻 공항','07:40','2022-06-12',686100);" ,
                "insert Route values(48,'괌-인천',671642321,15772600,'앤토니오B.원팻 공항','23:00','인천공항','08:20','2022-06-14',575400);" ,
                "insert Route values(49,'인천-파리',15772600,3950,'인천공항','06:00','샤를드골공항','21:30','2022-06-13',3430000);" ,
-                 "insert Route values(50,'파리-인천',3950,15772600,'샤를드골공항','20:00','인천공항','12:30','2022-06-15',3152000);"}; 
+                 "insert Route values(50,'파리-인천',3950,15772600,'샤를드골공항','20:00','인천공항','12:30','2022-06-15',3152000);",
+                 "insert Route values(null,'파리-인천',3950,15772600,'샤를드골공항','21:00','인천공항','13:30','2022-06-15',3152000);"}; 
 
    public static void main(String[] args) {
       createInitialAirDatabase();

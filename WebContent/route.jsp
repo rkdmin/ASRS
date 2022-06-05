@@ -18,10 +18,10 @@
       System.out.println(date);
       AIRDB.loadConnectAir();		
   	  ResultSet result = AIRDB.getRoute(date, routeName);
-  	  
+  	  request.setAttribute("num", num);
   	  request.setAttribute("title", date); 
       request.setAttribute("RS", result); 
-      request.getRequestDispatcher("ListRS.jsp").forward(request, response);
+      request.getRequestDispatcher("reserve.jsp").forward(request, response);
    %>
   </BODY>
 </HTML>

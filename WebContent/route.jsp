@@ -10,19 +10,16 @@
     <%  
       String start = request.getParameter("start");
       String arrive = request.getParameter("arrive");
+      String routeName = start + "-" + arrive;
       String numString = request.getParameter("num");
       System.out.println(numString);
       int num = Integer.parseInt(numString);
-      String sDate = request.getParameter("sDate");
-      String aDate = request.getParameter("aDate");
-      
+      String date = request.getParameter("date");
+      System.out.println(date);
       AIRDB.loadConnectAir();		
-  	  ResultSet result = AIRDB.getRoute(sDate);
-  	  request.setAttribute("title", sDate); 
-      request.setAttribute("RS", result); 
-      request.getRequestDispatcher("ListRS.jsp").forward(request, response);
-      ResultSet result2 = AIRDB.getRoute(aDate);
-      request.setAttribute("title", aDate); 
+  	  ResultSet result = AIRDB.getRoute(date, routeName);
+  	  
+  	  request.setAttribute("title", date); 
       request.setAttribute("RS", result); 
       request.getRequestDispatcher("ListRS.jsp").forward(request, response);
    %>

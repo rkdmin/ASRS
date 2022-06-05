@@ -200,10 +200,14 @@ public static boolean idDuplication(String id) {
 
         return cu;
      }
-    // 날짜에 맞는 노선검색(route테이블에서)
- 	public static ResultSet getRoute(String date) {
- 		return rs;// 암거나 리턴한거고 알맞은 노선들 리턴해주면댐
- 	}
+    
+ 	public static ResultSet getRoute(String date, String routeName) {
+        String sql = "select routeName as 노선명, sAirName as 출발공항이름, aAirName as 도착공항이름, sTime as 출발시간, aTime as 도착시간, price as 금액 "
+                + "from Route where routeName = '"+routeName+"' and date = '"+date+"';";
+        System.out.println("   >> SQL : " + sql + "\n");
+
+        return selectQuery(sql);
+     }
 }
     
 

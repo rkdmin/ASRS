@@ -13,7 +13,7 @@
       <label><input type="checkbox" name="agree" value="3" id="three">제 3자 이용 동의</label><br>
       <input type="button" value="확인" onclick="test()">
       <script type="text/javascript">
-      function test() {
+      function test(event) {
     	  const one = document.getElementsByName("agree")[0].checked;
     	  const two = document.getElementsByName("agree")[1].checked;
     	  const three = document.getElementsByName("agree")[2].checked;

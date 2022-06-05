@@ -37,8 +37,7 @@
 		SimpleDateFormat formatter2 = new SimpleDateFormat("dd");
 		String min = formatter.format(now);    
 	%>
-	출발날짜 : <input type="date" value=<%=min %> min=<%=min%> name="sDate"><br><br>
-	도착날짜 : <input type="date" value=<%=min %> min=<%=min%> name="aDate"><br><br>
+	출발날짜 : <input type="date" value=<%=min %> min=<%=min%> name="date"><br><br>
 	<input type="submit" value="검색하기">
 	</form>
 </body>

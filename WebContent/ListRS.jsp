@@ -59,6 +59,8 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 			int cnt = 0;
 			while(rs.next()) {
 				price[cnt]= rs.getInt("금액");
+				out.println("<input type=\"hidden\" id=\"price" +cnt+ "\" value=\"" + price[cnt] + "\">" );
+				out.println("<input type=\"hidden\" id=\"cnt" +cntTuples+ "\">" );
 				cnt++;
 				out.println("<tr onClick=\"HighlightRow(this)\">" );
 
@@ -74,8 +76,11 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  </table >
 	  <button onclick="alert('onclickEvent')">구매</button>
 	  <script type="text/javascript">
+	  const name = document.getElementById('name').value;
+      document.getElementById("result").innerText = name;
 	  function HighlightRow(obj){
 	  	  obj.classList.toggle("clickColor");
+	  	  
 		}
 	</script>
 	  

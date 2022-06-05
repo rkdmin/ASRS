@@ -10,11 +10,8 @@ public class Manager {
 	String password;
 	
 	public Manager(String MgrID, String password) {
-		
 		this.MgrID = MgrID;
 		this.password = password;
-	
-		
 	}
 	// 관리자정보 출력
 			public void output() {

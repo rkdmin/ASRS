@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=euc_kr" 
+<%@ page language="java" contentType="text/html; charset=euc-kr" 
 	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
-<% request.setCharacterEncoding("euc-kr"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <HTML>
   <BODY>
     <br> 
@@ -11,7 +11,6 @@
  	    	   out.println("<H3 align=center >ResultSet 객체가 전달되지 않았습니다.</H3>");  
  	    	   return;
  	       }
- 	       
  	%>
  	   <H3 align=center > <% out.println(request.getAttribute("title"));   %> </H3>
  	         
@@ -21,7 +20,7 @@
 			rs.beforeFirst();  // rs 커서를 처음으로 이동
 			System.out.println("   >> cntTuples = " + cntTuples + "\n");	
 			 
-			if (cntTuples == 0) { // 투플 개수가 0이면
+			if (cntTuples == 0) { // 투플 개수가 0이면	
 				out.println("<center>(결과 없음)</center>");
 				return;
 			}
@@ -111,7 +110,6 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  		select--;
 	  	  }
 	  	  reserveIdTarget.value = reserveId[index];
-	  	   console.log("fuck" + reserveId[index]);
 		}
 	</script>
     <br>

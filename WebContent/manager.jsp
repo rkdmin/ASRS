@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=euc_kr" 
+<%@ page language="java" contentType="text/html; charset=euc-kr" 
    import="java.sql.*, AIR.*, java.text.SimpleDateFormat, java.util.Calendar, java.util.Date"%>
-<% request.setCharacterEncoding("euc-kr"); %>
+<% request.setCharacterEncoding("utf-8"); %>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mng.css">

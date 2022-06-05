@@ -81,7 +81,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  
 	  <%-- 구매버튼누르면 정보전달 --%>
 	  <form action="reserveSystem.jsp">
-	  	<p>총가격 : <input id="total" name="totalPrice" type="text" value=""></p>	  
+	  	<p>총가격 : <input id="total" name="totalPrice" type="text" value="" readonly></p>	  
 	  	<%
 	  		Customer customer = (Customer) session.getAttribute("customer");
 	  	    String id = customer.getId();

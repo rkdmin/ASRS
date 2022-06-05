@@ -21,7 +21,7 @@
   	  request.setAttribute("num", num);
   	  request.setAttribute("title", date); 
       request.setAttribute("RS", result); 
-      request.getRequestDispatcher("routeList.jsp").forward(request, response);
+      request.getRequestDispatcher("reserve.jsp").forward(request, response);
    %>
   </BODY>
 </HTML>

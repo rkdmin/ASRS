@@ -8,6 +8,6 @@
 <body>
 	ASRS
 	<a href="login.jsp">로그인</a>
-	예약현황
+	<a href="join1.jsp">회원가입</a>
 </body>
 </html>

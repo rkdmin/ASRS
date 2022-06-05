@@ -4,10 +4,11 @@
 <HTML>
   <HEAD>
   <meta charset="EUC-KR">
-  <TITLE>노선검색</TITLE>
+  <TITLE>ASRS</TITLE>
   </HEAD>
   <BODY>
     <%  
+    
       // 세션 정보 불러오기
       Customer customer = (Customer) session.getAttribute("customer");
 	  String id = customer.getId();

@@ -5,7 +5,6 @@
   <BODY>
     <br> 
 	<%	
-	       String num = request.getParameter("num");
  	       ResultSet rs = (ResultSet) request.getAttribute("RS");
  	       if (rs == null) {
  	    	   out.println("<H3 align=center >ResultSet 객체가 전달되지 않았습니다.</H3>");  
@@ -50,7 +49,6 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	    int[] reserveId = new int[cntTuples];
 	   // js에 튜플개수 인원수 넣기
 	   out.println("<input type=\"hidden\" id=\"cnt\" value=\" "+ cntTuples+ "\">"  );
-	   out.println("<input type=\"hidden\" id=\"num\" value=\" "+ num+ "\">"  );
 			out.println("<tr bgcolor=#DDDDDD>" );
 
 			for(int i=0; i<columns.length; i++){
@@ -61,7 +59,6 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 			int cnt = 0;
 			while(rs.next()) {
 				reserveId[cnt] = rs.getInt("예약번호");
-				out.println("<input type=\"hidden\" id=\"reserveId" +cnt+ "\" value=\"" + reserveId[cnt] + "\">" );
 				cnt++;
 				out.println("<tr onClick=\"HighlightRow(this)\">" );
 
@@ -83,27 +80,22 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  </form>
 	  
 	  <script type="text/javascript">
-	  const cnt = document.querySelector("#cnt").value;// 총튜플개수
-	  const reserveId = new Array();// 예약번호
-	  const uniqueNoTarget = document.querySelector("#reserveIdTarget");
 	  let select = 0;
-	  for(var i = 0; i < cnt; i++){
-		  reserveId = document.querySelector("#reserveId" + i);
-		  reserveId[i] = reserveId.value;
-	  }
 	  function HighlightRow(obj){
-		  const index = obj.rowIndex - 1;
+		  const index = obj.rowIndex;
+		  console.log(index);
 	  	  obj.classList.toggle("clickColor2");
-	  	  var b = parseInt(price[index]);
 	  	  if(obj.className == "clickColor2"){
 	  		if(select >= 1){
 	  			alert("2개 이상 설정할 수 없습니다.");
 	  			obj.classList.toggle("clickColor2");
 	  			return 0;
 	  		}
+	  		select++;
 	  	  }else{
+	  		select--;
 	  	  }
-	  	  reserveIdTarget.value = reserveId[index];
+	  	  reserveIdTarget.value = index;
 		}
 	</script>
     <br>

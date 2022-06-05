@@ -251,13 +251,31 @@ public static boolean idDuplication(String id) {
       }    
     }
     
-    // 고객 예약 현황 출력
+  //고객 예약현황 출력
     public static ResultSet getCustomerReserve(String id) {
-        String sql = "select * from Reserve where id = '"+id+"';";
+        String sql = "select reserveId as 예약번호, num as 예매수, totalPrice as 총가격, routeName as 노선명, sAirName as 출발공항이름, aAirName as 도착공항이름, sTime as 출발시간, aTime as 도착시간 "
+              + "from Reserve, Route "
+              + "where Reserve.uniqueNo = Route.uniqueNo and  id = '"+id+"';";
         System.out.println("   >> SQL : " + sql + "\n");
 
         return selectQuery(sql);
      }
+    // 예약 취소 쿼리
+    public static boolean cancelReserve(int reserveId) {
+      try {
+         String sql = "delete from Reserve where reserveId =? ";
+         prStmt= con.prepareStatement(sql);
+         prStmt.setInt(1, reserveId);
+         prStmt.executeUpdate();
+         return true;
+      }
+      catch(SQLException ex ) {
+         System.err.println("\n  ??? SQL exec error in executeAnyQuery(): " + ex.getMessage() );
+         ex.printStackTrace();
+         return false;
+      }
+    }
+
 }
     
 

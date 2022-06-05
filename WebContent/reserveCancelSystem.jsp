@@ -1,6 +1,6 @@
 
 	<%@ page language="java" contentType="text/html; charset=euc_kr" 
-	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
+	import="java.sql.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher, AIR.*"%>
 <% request.setCharacterEncoding("euc-kr"); %>
 <HTML>
   <HEAD>
@@ -8,19 +8,19 @@
   <TITLE>회원가입 처리</TITLE>
   </HEAD>
   <BODY>
-	<jsp:useBean class="AIR.Reserve" id="reserve" scope="request" />
-	<jsp:setProperty name="reserve" property="*" />
     <% 
+    	String reserveIdString = request.getParameter("reserveId");
+  		int reserveId = Integer.parseInt(reserveIdString);
    		AIRDB.loadConnectAir();	
-		boolean result = AIRDB.insertReserve(reserve);
+	    boolean result = AIRDB.cancelReserve(reserveId);
 		
 		if(result == true){
 			out.print("<script>alert('취소가 완료되었습니다!')</script>");
-			out.print("<script>location='main.jsp'</script>");
+			out.print("<script>location='reservation.jsp'</script>");
 		}
 		else{
-			out.print("<script>alert('예약이 안됐습니당~!')</script>");
-			out.print("<script>location='main.jsp'</script>");
+			out.print("<script>alert('취소가 안됐습니당~!')</script>");
+			out.print("<script>location='reservation.jsp'</script>");
 		}
     %>
   </BODY>

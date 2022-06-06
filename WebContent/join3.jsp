@@ -3,14 +3,21 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/join.css">
 <title>ASRS</title>
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="false"/>
-	<h3>1약관동의 2정보입력 3완료</h3>
-      <div>회원가입이 완료되었습니다<br>로그인 해주시길 바랍니다.</div>
-      <br>
-      <a href="login.jsp"><button>메인으로</button></a>
+	<section>
+		<div id="join3">
+			<h3>1.약관동의 -> 2.정보입력 -></h3><h3 class="blue"> 3.완료</h3>
+			<br>
+			<br>
+     	 	<div class="txt">회원가입이 완료되었습니다.<br>로그인 해주시길 바랍니다.</div>
+     	 	<br>
+      		<a href="login.jsp"><button class="loginbtn">로그인</button></a>
+      	</div>
+	</section>
 </body>
 </html>
 	

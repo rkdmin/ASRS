@@ -3,11 +3,11 @@ package AIR;
 public class Reserve {
    private int reserveId;// 기본키
    private int uniqueNo; // 노선번호
-   private int id;// 사용자 아이디
+   private String id;// 사용자 아이디
    private int num;// 인원수
    private int totalPrice;// 총구매가격
    public Reserve() {}
-   public Reserve(int reserveId, int uniqueNo, int id, int num, int totalPrice) {
+   public Reserve(int reserveId, int uniqueNo, String id, int num, int totalPrice) {
       super();
       this.reserveId = reserveId;
       this.uniqueNo = uniqueNo;
@@ -27,10 +27,10 @@ public class Reserve {
    public void setUniqueNo(int uniqueNo) {
       this.uniqueNo = uniqueNo;
    }
-   public int getId() {
+   public String getId() {
       return id;
    }
-   public void setId(int id) {
+   public void setId(String id) {
       this.id = id;
    }
    public int getNum() {

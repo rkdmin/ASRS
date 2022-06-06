@@ -1,14 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=euc_kr" 
+<%@ page language="java" contentType="text/html; charset=utf-8" 
 	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
 <% request.setCharacterEncoding("euc-kr"); %>
 <HTML>
+<HEAD>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mng.css">
+  <meta charset="EUC-KR">
+  <TITLE>ASRS</TITLE>
+  </HEAD>
   <BODY>
+  <jsp:include page="header3.jsp" flush="false" />
+  <section>
+  <div id="mainmng">
     <br> 
 	<%	
  	
  	       ResultSet rs = (ResultSet) request.getAttribute("RS");
  	       if (rs == null) {
- 	    	   out.println("<H3 align=center >ResultSet °´Ã¼°¡ Àü´ŞµÇÁö ¾Ê¾Ò½À´Ï´Ù.</H3>");  
+ 	    	   out.println("<H3 align=center >ResultSet ê°ì²´ê°€ ì „ë‹¬ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.</H3>");  
  	    	   return;
  	       }
  	       
@@ -22,13 +30,13 @@
 System.out.println("   >> attributeForButton = " + attributeForButton + "\n");	
 System.out.println("   >> pageForButtonCliked = " + pageForButtonCliked + "\n");	
 
-			rs.last();  // rs Ä¿¼­¸¦ ³¡À¸·Î ÀÌµ¿ÇÏ¿© ÅõÇÃ °³¼ö È®ÀÎ
-			int cntTuples = rs.getRow();  // ÅõÇÃ °³¼ö¸¦ ±¸ÇÔ
-			rs.beforeFirst();  // rs Ä¿¼­¸¦ Ã³À½À¸·Î ÀÌµ¿
+			rs.last();  // rs ì»¤ì„œë¥¼ ëìœ¼ë¡œ ì´ë™í•˜ì—¬ íˆ¬í”Œ ê°œìˆ˜ í™•ì¸
+			int cntTuples = rs.getRow();  // íˆ¬í”Œ ê°œìˆ˜ë¥¼ êµ¬í•¨
+			rs.beforeFirst();  // rs ì»¤ì„œë¥¼ ì²˜ìŒìœ¼ë¡œ ì´ë™
 System.out.println("   >> cntTuples = " + cntTuples + "\n");	
 			 
-			if (cntTuples == 0) { // ÅõÇÃ °³¼ö°¡ 0ÀÌ¸é
-				out.println("<center>(°á°ú ¾øÀ½)</center>");
+			if (cntTuples == 0) { // íˆ¬í”Œ ê°œìˆ˜ê°€ 0ì´ë©´
+				out.println("<center>(ê²°ê³¼ ì—†ìŒ)</center>");
 				return;
 			}
 			
@@ -53,10 +61,10 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  
 	   <%      		
 	    /*
-	      if (cntTuples == 1) { // ÅõÇÃ °³¼ö°¡ 1ÀÌ¸é ÇÑ ¶óÀÎ¿¡ ¾ÖÆ®¸®ºäÆ®¸í°ú ¾ÖÆ®¸®ºäÆ® ÀÌ¸§À» Ãâ·Â
+	      if (cntTuples == 1) { // íˆ¬í”Œ ê°œìˆ˜ê°€ 1ì´ë©´ í•œ ë¼ì¸ì— ì• íŠ¸ë¦¬ë·°íŠ¸ëª…ê³¼ ì• íŠ¸ë¦¬ë·°íŠ¸ ì´ë¦„ì„ ì¶œë ¥
 			    out.println("<table align=center valign=top border=1 cellpadding=8 cellspacing=0 bordercolor=#999999>");
 			
-				rs.next(); // ResultSetÀÇ Ä¿¼­ ÀÌµ¿
+				rs.next(); // ResultSetì˜ ì»¤ì„œ ì´ë™
 
 				for(int i=0; i<columns.length; i++){
 					out.println("<tr><td bgcolor=#DDDDDD>" + columns[i]  + "</td >" + "<td > &nbsp;" +  rs.getObject(columns[i])  + "&nbsp;</td></tr>");	
@@ -69,7 +77,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	    */
 			
 	        out.println("<table align=center valign=top border=1 cellpadding=8 cellspacing=0 bordercolor=#999999>");
-			out.println("<tr bgcolor=#DDDDDD>" );
+			out.println("<tr bgcolor=#6c7ae0 class=\"ftable\" >" );
 
 			for(int i=0; i<columns.length; i++){
 				out.println("<th>" + columns[i]  + "</th>" );	
@@ -83,7 +91,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 
 					Object obj= rs.getObject(columns[i]);
  // System.out.println("   >> col value : " + (obj) + "\n");
-					if (obj == null)    // null °´Ã¼ÀÌ¸é nullÀ» Ãâ·Â
+					if (obj == null)    // null ê°ì²´ì´ë©´ nullì„ ì¶œë ¥
 						out.println("<td> null </td>");
 					else if (columnTypes[i].equals("INTEGER") || columnTypes[i].equals("FLOAT")
 			                             || columnTypes[i].equals("DOUBLE") || columnTypes[i].equals("BIGINT") )
@@ -100,5 +108,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
       %>
 	  </table >
     <br>
+    </div>
+    </section>
   </BODY>
 </HTML>

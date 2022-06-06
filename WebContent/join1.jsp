@@ -3,25 +3,31 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/join.css">
 <title>ASRS</title>
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="false"/>
-	<h3>1약관동의 2정보입력 3완료</h3>
-      <label><input type="checkbox" name="agree" value="1" id="one">개인정보 제공 동의</label><br>
-      <label><input type="checkbox" name="agree" value="2" id="two">개인정보 사용 동의</label><br>
-      <label><input type="checkbox" name="agree" value="3" id="three">제 3자 이용 동의</label><br>
-      <input type="button" value="확인" onclick="test()">
+	<section>
+		<div id="join1">
+			<h3 class="blue">1.약관동의</h3><h3> -> 2.정보입력 -> 3.완료</h3>
+			<h4>약관동의</h4>
+     		<label><input type="checkbox" name="agree" value="1" id="one">개인정보 수집 동의</label><br>
+   		    <label><input type="checkbox" name="agree" value="2" id="two">개인정보 이용 동의</label><br>
+      		<br>
+      		<input type="button" value="다음" onclick="test()" class="joinbtn">
+      	</div>
+	</section>
       <script type="text/javascript">
-      function test(event) {
+      function test() {
     	  const one = document.getElementsByName("agree")[0].checked;
     	  const two = document.getElementsByName("agree")[1].checked;
-    	  const three = document.getElementsByName("agree")[2].checked;
-    	  if(one==true&&two==true&&three==true){
+    	  if(one==true&&two==true){
     		  location.href = "join2.jsp";
-    	  }else{
-    		  alert("전부 동의하셔야합니다.");
     	  }
+		  else{
+		  alert("전부 동의하셔야합니다.");
+		  }
       }
 </script>
 </body>

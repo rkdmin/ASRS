@@ -165,7 +165,7 @@ public class AirSystemInitialization {
                     " CREATE TABLE Reserve( " +
                           " reserveId int NOT NULL AUTO_INCREMENT," +
                           " uniqueNo INT NOT NULL, " +
-                          " id int(11) NOT NULL, " +
+                          " id varchar(20) NOT NULL, " +
                           " num int(11) NOT NULL, " +
                           " totalPrice int not null, " +
                           " PRIMARY KEY(reserveId) " +

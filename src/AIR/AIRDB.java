@@ -229,7 +229,7 @@ public static boolean idDuplication(String id) {
           prStmt= con.prepareStatement(sql);  
           prStmt.setInt(1, reserve.getReserveId());
            prStmt.setInt(2, reserve.getUniqueNo());
-           prStmt.setInt(3, reserve.getId());
+           prStmt.setString(3, reserve.getId());
            prStmt.setInt(4, reserve.getNum());
            prStmt.setInt(5, reserve.getTotalPrice());
            

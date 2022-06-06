@@ -1,20 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" 
+<%@ page language="java" contentType="text/html; charset=euc_kr" 
 	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
 <% request.setCharacterEncoding("euc-kr"); %>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>ASRS</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+<title>·Î±×ÀÎ</title>
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="false"/>
-	<h3>ë¡œê·¸ì¸</h3>
-	<form action="loginSystem.jsp">
-		ì•„ì´ë””: <input type="text" name="id"><br>
-		ë¹„ë°€ë²ˆí˜¸: <input type="password" name="password"><br>
-		<br>
-		<input type="submit" value="ë¡œê·¸ì¸"> 
-	</form>
-	<a href="join1.jsp"><button>íšŒì›ê°€ìž…</button></a>
+		<section>
+			<div id="loginw">
+			<h3>·Î±×ÀÎ</h3>
+			<form action="loginSystem.jsp">
+			¾ÆÀÌµð   <br><input type="text" name="id" class="forms"><br><br>
+			ºñ¹Ð¹øÈ£  <br><input type="password" name="password" class="forms"><br><br>
+			<input type="submit" value="·Î±×ÀÎ" class="loginbtn">
+			</form>
+			<a href="join1.jsp"><button class="joinbtn">
+			È¸¿ø°¡ÀÔ
+			</button></a>
+			</div>
+		</section>
 </body>
 </html>

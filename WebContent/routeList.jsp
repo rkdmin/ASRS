@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=euc-kr" 
 	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
-<% request.setCharacterEncoding("UTF-8"); %>
+<% request.setCharacterEncoding("euc-kr"); %>
 <HTML>
+<HEAD>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mng.css">
+  <meta charset="EUC-KR">
+  <TITLE>노선검색</TITLE>
+  </HEAD>
   <BODY>
-    <br> 
+    <jsp:include page="header3.jsp" flush="false"/>
+    <section>
+    <div id="mng">
 	<%	
  	       ResultSet rs = (ResultSet) request.getAttribute("RS");
 		   String date = request.getParameter("date");
@@ -11,8 +18,9 @@
  	    	   out.println("<H3 align=center >ResultSet 객체가 전달되지 않았습니다.</H3>");  
  	    	   return;
  	       }
+ 	       
  	%>
- 	   <H3 align=center > <% out.println(request.getAttribute("title"));   %> </H3>
+ 	   <H3 align=center class="date"> <% out.println(request.getAttribute("title"));   %> </H3>
  	         
  	<% 
 			rs.last();  // rs 커서를 끝으로 이동하여 투플 개수 확인
@@ -20,7 +28,7 @@
 			rs.beforeFirst();  // rs 커서를 처음으로 이동
 			System.out.println("   >> cntTuples = " + cntTuples + "\n");	
 			 
-			if (cntTuples == 0) { // 투플 개수가 0이면	
+			if (cntTuples == 0) { // 투플 개수가 0이면
 				out.println("<center>(결과 없음)</center>");
 				return;
 			}
@@ -50,7 +58,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	   
 	   // js에 튜플개수 인원수 넣기
 	   out.println("<input type=\"hidden\" id=\"cnt\" value=\" "+ cntTuples+ "\">"  );
-			out.println("<tr bgcolor=#DDDDDD>" );
+			out.println("<tr bgcolor=#6c7ae0 class=\"ftable\" >" );
 
 			for(int i=0; i<columns.length; i++){
 				out.println("<th>" + columns[i]  + "</th>" );	
@@ -75,15 +83,15 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
       
 	  </table >
 	  <%-- 추가버튼누르면 정보전달 --%>
-	  <form action="addRoute.jsp">
+	  <form class="btn" action="addRoute.jsp">
 	  	<input type="hidden" name="date" value="<%= date %>">
-	  	<input type="submit" value="추가"> 
+	  	<input type="submit" value="추가" class="addbtn"> 
 	  </form>
 	  
 	  <%-- 삭제버튼누르면 정보전달 --%>
-	  <form action="routeCancelSystem.jsp">
+	  <form class="btn" action="routeCancelSystem.jsp">
 	  	<input type="hidden" id ="reserveIdTarget"name="reserveId" value="">
-	  	<input type="submit" value="삭제"> 
+	  	<input type="submit" value="삭제" class="delbtn"> 
 	  </form>
 	  
 	  <script type="text/javascript">
@@ -110,8 +118,11 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  		select--;
 	  	  }
 	  	  reserveIdTarget.value = reserveId[index];
+	  	   console.log("fuck" + reserveId[index]);
 		}
 	</script>
     <br>
+    </div>
+    </section>
   </BODY>
 </HTML>

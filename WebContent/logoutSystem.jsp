@@ -4,7 +4,7 @@
 <HTML>
   <HEAD>
   <meta charset="EUC-KR">
-  <TITLE>�α׾ƿ� ó��</TITLE>
+  <TITLE>로그아웃 시스템</TITLE>
   </HEAD>
   <BODY>
     <%     

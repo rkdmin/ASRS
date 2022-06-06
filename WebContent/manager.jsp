@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=euc-kr" 
+<%@ page language="java" contentType="text/html; charset=euc_kr" 
    import="java.sql.*, AIR.*, java.text.SimpleDateFormat, java.util.Calendar, java.util.Date"%>
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("euc-kr"); %>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mng.css">
@@ -10,7 +10,7 @@
 <body>
 <jsp:include page="header3.jsp" flush="false" />
 <section>
-	<div id="mng">
+	<div id="mainmng">
 	<%
 		// 현재 날짜 출력
 		Date now = Calendar.getInstance().getTime();       
@@ -21,8 +21,10 @@
 	 <h3>Manager Mode </h3>
 	 <form action="managerRoute.jsp">
 	 <input type="date" value=<%=date %> min=<%=date%> name="date" class="forms">
-	 <input type="submit" value="노선관리">
+	 <br>
+	 <input type="submit" value="노선관리" class="routebtn">
 	 </form>
+	
 	</div>
 </section>
 </body>

@@ -2,7 +2,15 @@
 	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
 <% request.setCharacterEncoding("euc-kr"); %>
 <HTML>
+<head>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/rs.css">
+  <meta charset="EUC-KR">
+</head>
   <BODY>
+  
+  <jsp:include page="header2.jsp" flush="false"/>
+  <section>
+   <div id="rsvWindow">
     <br> 
 	<%	
  	       ResultSet rs = (ResultSet) request.getAttribute("RS");
@@ -12,7 +20,7 @@
  	       }
  	       
  	%>
- 	   <H3 align=center > <% out.println(request.getAttribute("title"));   %> </H3>
+ 	   <H3 align=center class="rsvstat"> <% out.println(request.getAttribute("title"));   %> </H3>
  	         
  	<% 
 			rs.last();  // rs 커서를 끝으로 이동하여 투플 개수 확인
@@ -50,7 +58,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	   
 	   // js에 튜플개수 인원수 넣기
 	   out.println("<input type=\"hidden\" id=\"cnt\" value=\" "+ cntTuples+ "\">"  );
-			out.println("<tr bgcolor=#DDDDDD>" );
+			out.println("<tr bgcolor=#6c7ae0 class=\"ftable\" >" );
 
 			for(int i=0; i<columns.length; i++){
 				out.println("<th>" + columns[i]  + "</th>" );	
@@ -78,7 +86,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  <%-- 취소버튼누르면 정보전달 --%>
 	  <form action="reserveCancelSystem.jsp">
 	  	<input type="hidden" id ="reserveIdTarget"name="reserveId" value="">
-	  	<input type="submit" value="취소"> 
+	  	<input type="submit" value="취소" class="canbtn"> 
 	  </form>
 	  
 	  <script type="text/javascript">
@@ -109,5 +117,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 		}
 	</script>
     <br>
+    </div>
+    </section>
   </BODY>
 </HTML>

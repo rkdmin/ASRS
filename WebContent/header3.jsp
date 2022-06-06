@@ -8,10 +8,10 @@
 </head>
 <body>
 	<div id="header">
-	<div class="logo">ASRS</div>
+	<div class="logo"><a href="manager.jsp">ASRS</a></div>
 	<div class="menu">
 	<a href="logoutSystem.jsp">로그아웃</a>
-	<a href="managerReservation.jsp">모든 예약현황</a>
+	<a href="managerReservation.jsp"> 모든예약현황</a>
 	</div>
 	</div>
 </body>

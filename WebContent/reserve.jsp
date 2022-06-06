@@ -2,7 +2,15 @@
 	import="java.sql.*, AIR.*, util.*, java.util.regex.Pattern, java.util.regex.Matcher"%>
 <% request.setCharacterEncoding("euc-kr"); %>
 <HTML>
+<HEAD>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/rs.css">
+  <meta charset="EUC-KR">
+  <TITLE>ASRS</TITLE>
+  </HEAD>
   <BODY>
+  <jsp:include page="header2.jsp" flush="false"/>
+  <section>
+  <div id="rsvWindow">
     <br> 
 	<%	
 	       String num = request.getParameter("num");
@@ -52,7 +60,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	   // js에 튜플개수 인원수 넣기
 	   out.println("<input type=\"hidden\" id=\"cnt\" value=\" "+ cntTuples+ "\">"  );
 	   out.println("<input type=\"hidden\" id=\"num\" value=\" "+ num+ "\">"  );
-			out.println("<tr bgcolor=#DDDDDD>" );
+			out.println("<tr bgcolor=#6c7ae0 class=\"ftable\" >" );
 
 			for(int i=0; i<columns.length; i++){
 				out.println("<th>" + columns[i]  + "</th>" );	
@@ -81,7 +89,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  
 	  <%-- 구매버튼누르면 정보전달 --%>
 	  <form action="reserveSystem.jsp">
-	  	<p>총가격 : <input id="total" name="totalPrice" type="text" value="" readonly></p>	  
+	  	<div class="calc"><p class="txt">총가격 : <input id="total" class="price" name="totalPrice" type="text" value="" readonly>원</p></div>  
 	  	<%
 	  		Customer customer = (Customer) session.getAttribute("customer");
 	  	    String id = customer.getId();
@@ -89,7 +97,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 	  	<input type="hidden" id ="uniqueNoTarget"name="uniqueNo" value="">
 	  	<input type="hidden" name="id" value="<%=customer.getId()%>">
 	  	<input type="hidden" name="num" value="<%=num%>">
-	  	<input type="submit" value="구매"> 
+	  	<input type="submit" value="구매" class="buybtn"> 
 	  </form>
 	  
 	  <script type="text/javascript">
@@ -130,5 +138,7 @@ System.out.println("   >> clms : " + columns[i] + " " + columnTypes[i]+ "\n");
 		}
 	</script>
     <br>
+    </div>
+    </section>
   </BODY>
 </HTML>
